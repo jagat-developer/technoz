@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+:root {
+  --header-height: 6rem;
+
+  --background: #050504;
+  --foreground: #f5f1eb;
+  --line: rgba(255, 255, 255, 0.08);
+  --panel: #11100e;
+  --copper: #ea580c;
+
+  --ink-1: #050504;
+  --ink-2: #070706;
+  --ink-3: #080807;
+  --ink-4: #11100e;
+
+  --tracking-luxe: 0.22em;
+  --tracking-luxe-wide: 0.24em;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ink-1: var(--ink-1);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-4: var(--ink-4);
+  --color-copper: var(--copper);
+  --font-sans: var(--font-jost);
+  --font-display: var(--font-cormorant);
+  --tracking-luxe: var(--tracking-luxe);
+  --tracking-luxe-wide: var(--tracking-luxe-wide);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-jost), sans-serif;
+}
+
+::selection {
+  background: rgba(234, 88, 12, 0.35);
+  color: white;
+}
+
+img {
+  max-width: 100%;
+}
+
+@utility fluid-hero {
+  font-size: clamp(2.5rem, 8vw, 6.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+@utility eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-luxe);
+}
+
+.form-control > input,
+.form-control > select,
+.form-control > textarea {
+  width: 100%;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.8rem 0.9rem;
+  color: white;
+  outline: none;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.form-control > select {
+  color-scheme: dark;
+}
+
+.form-control > textarea {
+  resize: vertical;
+}
+
+.form-control > input:focus,
+.form-control > select:focus,
+.form-control > textarea:focus {
+  border-color: rgba(251, 146, 60, 0.75);
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.16);
+}
+
+.form-control > input::placeholder,
+.form-control > textarea::placeholder {
+  color: rgba(212, 212, 216, 0.55);
+}
+
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
