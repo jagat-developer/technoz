@@ -533,7 +533,7 @@ function DashcamPage() {
         <SectionHeading
           eyebrow="Supplier source"
           title="Retail prices from the Yodha catalog."
-          summary="The old placeholder accessory prices have been replaced with supplier-visible retail prices, sale prices, and product images. Vehicle fitment, install time, and warranty should still be confirmed during booking."
+          summary="These are supplier-visible retail references, sale prices, and product images from the Yodha catalog. Final availability, tax, fitment, install time, and warranty should still be confirmed during booking."
         />
         <div className="mt-10 grid gap-5 lg:grid-cols-2">
           {accessoryPackages.map((item) => (
@@ -548,7 +548,7 @@ function DashcamPage() {
         <SupplierProductGrid
           products={installationBundles}
           title="Installation bundles"
-          summary="Supplier-listed bundle pricing for installed YODHA dashcam options and subwoofer installation."
+          summary="Supplier-listed bundle pricing for installed YODHA dashcam options and subwoofer installation. Azdome M350 is listed in the summary pricing as text-only because the source grid does not expose a product image."
         />
         <SupplierProductGrid
           products={lighting}

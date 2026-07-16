@@ -43,7 +43,7 @@ export const navItems = [
 ];
 
 const detailingPackageNote =
-  "*Best for lightly soiled interiors. Heavily soiled vehicles may require an upgrade.";
+  "*Prices before tax. Packages are based on average vehicle condition; excess soiling, stains, or pet hair may require an additional fee.";
 
 export const detailingPackages: ServicePackage[] = [
   {
@@ -114,7 +114,7 @@ export const detailingPackages: ServicePackage[] = [
     slug: "ultimate-package",
     name: "Ultimate Package",
     eyebrow: "Diamond becomes Ultimate",
-    summary: "The highest interior clean with steam disinfection, steam cleaning, odor-germ attention, stain work, and leather conditioning.",
+    summary: "The highest interior clean with steam disinfection, steam cleaning, odor and germ attention, stain work, and leather conditioning.",
     idealFor: "Owners who want the most complete interior-focused package with disinfection and deeper stain treatment.",
     time: "3.5 to 4.5 hours",
     note: detailingPackageNote,
@@ -127,7 +127,7 @@ export const detailingPackages: ServicePackage[] = [
     interior: [
       "Steam disinfection of interior surfaces",
       "Steam cleaning of seats, carpets, and mats",
-      "Odor-causing bacteria and germ removal",
+      "Steam cleaning for odor and germ attention",
       "Deep stain and spill treatment",
       "Leather conditioning, if applicable",
     ],
@@ -199,7 +199,7 @@ export const accessoryPackages: ServicePackage[] = [
     id: "supplier-dashcam-retail",
     name: "Dashcam Retail Products",
     eyebrow: "Dashcam",
-    summary: "Supplier retail dashcams and hardwire accessories with visible Yodha catalog prices.",
+    summary: "Selected supplier retail dashcams and hardwire accessories with visible Yodha catalog prices.",
     idealFor: "Drivers comparing product-only dashcam, hardwire, and cable options before installation.",
     prices: [
       { vehicle: "REDTIGER ACC Hardwire Kit", price: "C$29.99" },
@@ -207,7 +207,7 @@ export const accessoryPackages: ServicePackage[] = [
       { vehicle: "REDTIGER F7NP 4K + 1080P: 128GB", price: "C$159.99" },
       { vehicle: "YODHA M8 4K + 1080P + 1080P + GPS + ADAS", price: "C$189.99" },
     ],
-    interior: ["Retail product pricing from Yodha", "Product-only and accessory options", "Install fitment confirmed before booking"],
+    interior: ["Selected retail product pricing from Yodha", "Product-only and accessory options", "Install fitment confirmed before booking"],
     expectations: [
       { label: "Camera coverage", value: 82, caption: "2-channel and 3-channel options" },
       { label: "Retail clarity", value: 92, caption: "Supplier prices from Yodha" },
@@ -220,15 +220,21 @@ export const accessoryPackages: ServicePackage[] = [
     id: "supplier-installation-bundles",
     name: "Installation Bundles",
     eyebrow: "Installed accessories",
-    summary: "Supplier-listed installation bundle retail prices for dashcams and audio upgrades.",
+    summary: "Supplier-listed installation bundle retail prices for dashcams and audio upgrades, with photo cards shown where source images are available.",
     idealFor: "Drivers who want the product and installation path priced together before booking.",
     prices: [
       { vehicle: "YODHA X35 Installation", price: "C$189.99" },
       { vehicle: "YODHA M8 Installation", price: "C$249.99" },
       { vehicle: "YODHA X3P Installation", price: "C$279.99" },
+      { vehicle: "Azdome M350 Installation SPECIAL", price: "C$440.00" },
       { vehicle: "Subwoofer Installation Bundle", price: "C$500.00" },
     ],
-    interior: ["Supplier installation bundle pricing", "Clean routing and fitment planning", "Warranty and exact install time to confirm"],
+    interior: [
+      "Supplier installation bundle pricing",
+      "Azdome M350 listed as text pricing because no source image is exposed",
+      "Clean routing and fitment planning",
+      "Warranty and exact install time to confirm",
+    ],
     expectations: [
       { label: "Install complexity", value: 82, caption: "Dashcam and audio bundle options" },
       { label: "Retail clarity", value: 88, caption: "Bundle prices from Yodha" },
@@ -241,12 +247,12 @@ export const accessoryPackages: ServicePackage[] = [
     id: "supplier-lighting",
     name: "Lighting Accessories",
     eyebrow: "Ambient, starlight, underglow",
-    summary: "Supplier retail lighting kits for cabin ambience, starlight headliners, and exterior underglow.",
+    summary: "Selected supplier retail lighting kits for cabin ambience, starlight headliners, and exterior underglow.",
     idealFor: "Drivers who want a visual interior or exterior lighting upgrade with retail pricing visible up front.",
     prices: [
       { vehicle: "Exterior Car Underglow LED Strip Lights", price: "C$54.99" },
       { vehicle: "YODHA 10PC Ambient Lightning Kit", price: "C$99.99" },
-      { vehicle: "YODHA 22PC Ambient Lightning Kit", price: "C$189.99" },
+      { vehicle: "650 Starlight Twinkle Headliner Kit", price: "C$189.99" },
       { vehicle: "1000 Starlight Twinkle Headliner Kit", price: "C$289.99" },
     ],
     interior: ["Ambient lighting kit options", "Starlight headliner kit options", "Underglow kit option", "Install requirements confirmed by vehicle"],
@@ -593,13 +599,14 @@ export const services: ServiceCategory[] = [
     title: "Audio, Video & Accessories",
     shortTitle: "Accessories",
     summary:
-      "Supplier-backed dashcams, hardwire accessories, installation bundles, ambient lighting, starlight kits, underglow, and audio upgrades.",
+      "Supplier-backed retail references for dashcams, hardwire accessories, installation bundles, ambient lighting, starlight kits, underglow, and audio upgrades.",
     startingAt: "C$29.99",
     image: "/images/yodha-x35-dashcam.jpg",
     benefits: [
       "REDTIGER hardwire accessories from C$29.99",
       "YODHA X35 dashcam retail from C$139.99",
       "YODHA X35 installation bundle from C$189.99",
+      "Azdome M350 installation special listed at C$440.00 as text-only pricing",
       "Lighting kits from C$54.99",
       "Remote starter installation for all-season comfort",
     ],
@@ -739,9 +746,9 @@ export const localSeoServices: LocalSeoService[] = [
     keyword: "dashcam installation",
     headline: "Discreet dashcam, hardwire accessory, 4K camera, GPS, ADAS, and installation bundle options.",
     summary:
-      "Dashcam content now uses supplier retail prices from Yodha, including product-only prices and installation bundle pricing where listed.",
+      "Dashcam content uses supplier retail references from Yodha, including product-only prices and installation bundle pricing where listed.",
     sourceFact:
-      "Yodha lists REDTIGER hardwire accessories at C$29.99, YODHA X35 at C$139.99, YODHA M8 at C$189.99, and X35 installation at C$189.99.",
+      "Yodha lists REDTIGER hardwire accessories at C$29.99, YODHA X35 at C$139.99, YODHA M8 at C$189.99, X35 installation at C$189.99, and Azdome M350 Installation SPECIAL at C$440.00.",
     conversionAngle: "Best for drivers who want security, incident recording, and cleaner cable routing.",
     startingAt: "C$29.99",
     image: "/images/yodha-x35-dashcam.jpg",
@@ -749,7 +756,7 @@ export const localSeoServices: LocalSeoService[] = [
       "Hardwire accessories from C$29.99",
       "YODHA X35 product-only price at C$139.99",
       "YODHA M8 product-only price at C$189.99 with GPS and ADAS listed",
-      "Installation bundle prices from the supplier catalog",
+      "Installation bundle prices from the supplier catalog, including Azdome M350 text-only pricing",
     ],
   },
   {
@@ -934,7 +941,7 @@ export const clientQuestions = [
   "Ceramic coating duration, coating lifespan, paint correction inclusion, warranty, and vehicle-size pricing.",
   "Iron decontamination price, exact included steps, and whether it always requires clay bar treatment.",
   "Supplier product inventory and sale prices should be rechecked before launch if the Yodha catalog changes.",
-  "Azdome M350 Installation SPECIAL is listed at C$440.00 on Yodha but needs a product image before adding to visual cards.",
+  "Azdome M350 Installation SPECIAL is listed at C$440.00 on Yodha and is shown as text-only pricing until a source image is available.",
   "Dashcam, lighting, audio, and CarPlay install time, warranty, and vehicle compatibility still need client confirmation.",
   "Remote starter and CarPlay package pricing still need supplier-backed confirmation.",
   "Whether membership pricing is monthly, per visit, or package-based.",
@@ -992,7 +999,7 @@ const corePageSeo: SeoPage[] = [
     path: "/ultimate-package",
     title: "Ultimate Detailing Package | Techno Car Studio",
     description:
-      "Ultimate interior detailing from $169 with steam disinfection, steam cleaning, odor-germ attention, stain treatment, and leather conditioning.",
+      "Ultimate interior detailing from $169 with steam disinfection, steam cleaning, odor and germ attention, stain treatment, and leather conditioning.",
     keywords: ["ultimate interior detailing Kitchener", "car interior cleaning KWC"],
     image: "/images/interior-porsche-clean-cabin.jpg",
     priority: 0.8,
@@ -1109,7 +1116,7 @@ export const contentPages: ContentPage[] = [
     body: [
       "The current website and client notes list service categories, starting prices, package inclusions, and exact estimated times for Express, Premium, and Ultimate interior detailing. Basic is mapped to Express, Advanced is mapped to Premium, and Diamond is mapped to Ultimate with exterior detailing excluded from those three interior packages.",
       "The client has also provided exterior hand wash pricing and a clay bar add-on price. Exterior wash remains a separate service path, and incomplete service data stays quote-based instead of inventing facts.",
-      "Supplier accessory pricing now comes from Yodha retail listings for dashcams, hardwire accessories, installation bundles, lighting kits, starlight kits, underglow, and subwoofer installation.",
+      "Supplier accessory pricing now comes from Yodha retail listings for dashcams, hardwire accessories, installation bundles, lighting kits, starlight kits, underglow, and subwoofer installation. Final installed quotes should still confirm vehicle fitment, availability, tax, warranty, and install time.",
       "This page is the main conversion hub for KWC car owners comparing what service fits their vehicle and schedule.",
     ],
     sections: [
@@ -1126,6 +1133,7 @@ export const contentPages: ContentPage[] = [
           "Clay bar treatment is available as a +$40 exterior add-on.",
           "REDTIGER hardwire accessories start at C$29.99 from Yodha retail pricing.",
           "YODHA X35 product-only pricing is C$139.99 and X35 installation bundle pricing is C$189.99.",
+          "Azdome M350 Installation SPECIAL is listed at C$440.00 and shown as text-only pricing because no source image is exposed.",
           "YODHA ambient lighting kits start at C$99.99 and underglow starts at C$54.99 from Yodha sale pricing.",
           "Tinting, ceramic coating, accessory install timing, and warranty details still need final confirmation.",
         ],
