@@ -15,6 +15,17 @@ export type ServiceAddOn = {
   description: string;
 };
 
+export type BookingExtraWorkOption = {
+  label: string;
+  value: string;
+  description: string;
+};
+
+export type BookingExtraWorkGroup = {
+  title: string;
+  options: BookingExtraWorkOption[];
+};
+
 export type SupplierProduct = {
   id: string;
   name: string;
@@ -86,6 +97,8 @@ export type ServiceCategory = {
   process: string[];
   packages?: ServicePackage[];
   quoteRequired?: boolean;
+  ctaHref?: string;
+  ctaLabel?: string;
 };
 
 export type Testimonial = {
@@ -108,6 +121,8 @@ export type LeadFormSubmission = {
   vehicle: string;
   serviceInterest: string;
   packageInterest: string;
+  additionalWork: string[];
+  additionalDetails: string;
   preferredDate: string;
   message: string;
   website?: string;

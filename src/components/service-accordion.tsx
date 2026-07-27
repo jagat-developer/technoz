@@ -71,8 +71,8 @@ export function ServiceAccordion({ services }: ServiceAccordionProps) {
                       </li>
                     ))}
                   </ul>
-                  <ButtonLink href="/contact-us" className="mt-7">
-                    Book {service.shortTitle}
+                  <ButtonLink href={service.ctaHref ?? "/contact-us"} className="mt-7">
+                    {service.ctaLabel ?? `Book ${service.shortTitle}`}
                   </ButtonLink>
                 </div>
               </div>

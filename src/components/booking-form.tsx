@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Send } from "lucide-react";
-import { detailingPackages, exteriorWashPackages, services } from "@/lib/site-data";
+import { bookingExtraWorkGroups, services } from "@/lib/site-data";
 import type { LeadFormSubmission } from "@/lib/types";
 
 const initialForm: LeadFormSubmission = {
@@ -13,6 +13,8 @@ const initialForm: LeadFormSubmission = {
   vehicle: "",
   serviceInterest: "Detailing",
   packageInterest: "Not sure yet",
+  additionalWork: [],
+  additionalDetails: "",
   preferredDate: "",
   message: "",
   website: "",
@@ -24,13 +26,52 @@ export function BookingForm() {
   const [message, setMessage] = useState("");
   const [mailtoFallback, setMailtoFallback] = useState<string | null>(null);
 
-  const packages = useMemo(
-    () => ["Not sure yet", ...detailingPackages.map((item) => item.name), ...exteriorWashPackages.map((item) => item.name)],
-    [],
+  const selectedService = useMemo(
+    () => services.find((service) => service.shortTitle === form.serviceInterest),
+    [form.serviceInterest],
   );
+
+  const packages = useMemo(() => {
+    const servicePackages = selectedService?.packages?.map((item) => item.name) ?? [];
+    const fallbackPackages: Record<string, string[]> = {
+      Tinting: ["Front side window tint", "Headlight / taillight tint", "Full coverage window tint"],
+      "Ceramic Coating": ["Interior ceramic coating", "Exterior ceramic coating"],
+    };
+
+    return ["Not sure yet", ...(servicePackages.length ? servicePackages : (fallbackPackages[form.serviceInterest] ?? []))];
+  }, [form.serviceInterest, selectedService]);
 
   function update<K extends keyof LeadFormSubmission>(key: K, value: LeadFormSubmission[K]) {
     setForm((current) => ({ ...current, [key]: value }));
+  }
+
+  function updateServiceInterest(serviceInterest: string) {
+    const service = services.find((item) => item.shortTitle === serviceInterest);
+    const packageNames = service?.packages?.map((item) => item.name) ?? [];
+    const fallbackPackages: Record<string, string[]> = {
+      Tinting: ["Front side window tint", "Headlight / taillight tint", "Full coverage window tint"],
+      "Ceramic Coating": ["Interior ceramic coating", "Exterior ceramic coating"],
+    };
+    const validPackages = ["Not sure yet", ...(packageNames.length ? packageNames : (fallbackPackages[serviceInterest] ?? []))];
+
+    setForm((current) => ({
+      ...current,
+      serviceInterest,
+      packageInterest: validPackages.includes(current.packageInterest) ? current.packageInterest : "Not sure yet",
+    }));
+  }
+
+  function toggleAdditionalWork(value: string) {
+    setForm((current) => {
+      const exists = current.additionalWork.includes(value);
+
+      return {
+        ...current,
+        additionalWork: exists
+          ? current.additionalWork.filter((item) => item !== value)
+          : [...current.additionalWork, value],
+      };
+    });
   }
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -105,7 +146,7 @@ export function BookingForm() {
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Service interest">
-          <select value={form.serviceInterest} onChange={(event) => update("serviceInterest", event.target.value)}>
+          <select value={form.serviceInterest} onChange={(event) => updateServiceInterest(event.target.value)}>
             {services.map((service) => (
               <option key={service.id}>{service.shortTitle}</option>
             ))}
@@ -119,6 +160,48 @@ export function BookingForm() {
           </select>
         </Field>
       </div>
+      <fieldset className="grid gap-3 rounded-sm border border-white/10 bg-white/[0.025] p-4">
+        <legend className="px-1 text-sm font-semibold text-zinc-200">Additional work</legend>
+        <p className="text-xs leading-6 text-zinc-500">Select extras or condition items to quote with this booking.</p>
+        <div className="grid gap-4">
+          {bookingExtraWorkGroups.map((group) => (
+            <div key={group.title} className="grid gap-2">
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-orange-300">{group.title}</p>
+              <div className="grid gap-2 md:grid-cols-2">
+                {group.options.map((option) => {
+                  const checked = form.additionalWork.includes(option.value);
+
+                  return (
+                    <label
+                      key={option.value}
+                      className="flex min-h-16 cursor-pointer items-start gap-3 rounded-sm border border-white/10 bg-white/[0.035] p-3 text-sm text-zinc-300 transition hover:border-orange-400/50 hover:bg-orange-500/10"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => toggleAdditionalWork(option.value)}
+                        className="mt-1 h-4 w-4 shrink-0 accent-orange-500"
+                      />
+                      <span className="min-w-0">
+                        <span className="block break-words font-semibold leading-5 text-white">{option.label}</span>
+                        <span className="mt-1 block text-xs leading-5 text-zinc-500">{option.description}</span>
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+      </fieldset>
+      <Field label="Extra work details">
+        <textarea
+          rows={3}
+          value={form.additionalDetails}
+          placeholder="Pet hair in cargo area, coffee stain, dashcam plus tint together..."
+          onChange={(event) => update("additionalDetails", event.target.value)}
+        />
+      </Field>
       <Field label="Preferred date or time">
         <input value={form.preferredDate} onChange={(event) => update("preferredDate", event.target.value)} />
       </Field>

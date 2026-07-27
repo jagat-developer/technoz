@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { Check, HelpCircle } from "lucide-react";
+import { Check } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { ContactPanel } from "@/components/contact-panel";
 import { ExteriorWashSection } from "@/components/exterior-wash-section";
@@ -17,7 +17,6 @@ import type { LocalSeoPage } from "@/lib/types";
 import {
   accessoryPackages,
   business,
-  clientQuestions,
   detailingPackages,
   getContentPage,
   getLocalSeoPage,
@@ -26,6 +25,8 @@ import {
   localSeoCities,
   localSeoPages,
   memberships,
+  ppfAddOns,
+  ppfPackages,
   publicRoutes,
   services,
   supplierProducts,
@@ -150,6 +151,8 @@ function ContentPageTemplate({ slug }: { slug: string }) {
   const showMembership = slug === "membership";
   const showContact = slug === "contact-us";
   const showAbout = slug === "about-us";
+  const showPpf = slug === "paint-protection-film";
+  const showPageIntro = !showServices;
 
   return (
     <>
@@ -167,23 +170,25 @@ function ContentPageTemplate({ slug }: { slug: string }) {
       />
       <PageHero eyebrow={page.eyebrow} title={page.title} summary={page.summary} image={page.heroImage} />
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
-        <Reveal>
-          <div className="sticky top-28">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-orange-300">Source-truth rewrite</p>
-            <p className="mt-4 text-sm leading-7 text-zinc-500">
-              Content is based on the current Techno Car Studio website and sharpened for premium local SEO.
-            </p>
-          </div>
-        </Reveal>
-        <Reveal className="grid gap-6 text-lg leading-9 text-zinc-300">
-          {page.body.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </Reveal>
-      </section>
+      {showPageIntro ? (
+        <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
+          <Reveal>
+            <div className="sticky top-28">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-orange-300">Overview</p>
+              <p className="mt-4 text-sm leading-7 text-zinc-500">
+                Premium automotive care, organized so drivers can compare services with confidence.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal className="grid gap-6 text-lg leading-9 text-zinc-300">
+            {page.body.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </Reveal>
+        </section>
+      ) : null}
 
-      {page.sections.length ? (
+      {showPageIntro && page.sections.length ? (
         <section className="border-y border-white/10 bg-ink-3">
           <div className="mx-auto grid max-w-7xl gap-5 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
             {page.sections.map((section) => (
@@ -209,6 +214,7 @@ function ContentPageTemplate({ slug }: { slug: string }) {
       ) : null}
 
       {showServices ? <ServicesPricingBlock /> : null}
+      {showPpf ? <PpfPackagesBlock /> : null}
       {showGallery ? <WorkBlock /> : null}
       {showMembership ? <MembershipBlock /> : null}
       {showAbout ? <AboutProofBlock /> : null}
@@ -247,7 +253,7 @@ function LocalSeoPageTemplate({ page }: { page: LocalSeoPage }) {
       <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
         <Reveal>
           <div className="sticky top-28">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-orange-300">Local SEO landing page</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-orange-300">Local service</p>
             <h2 className="mt-4 font-display text-4xl leading-tight text-white">{page.service.headline}</h2>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <ButtonLink href="/contact-us">Book This Service</ButtonLink>
@@ -298,7 +304,7 @@ function LocalSeoPageTemplate({ page }: { page: LocalSeoPage }) {
             <SectionHeading
               eyebrow={`${page.city.name} detailing packages`}
               title="Compare interior packages and exterior wash options."
-              summary="Interior package prices and service windows are source-confirmed, with exterior hand wash pricing added from the latest client notes."
+              summary="Choose the interior package or exterior wash option that best fits your vehicle condition and schedule."
             />
             <div className="mt-10 grid gap-5 lg:grid-cols-3">
               {detailingPackages.map((item) => (
@@ -312,9 +318,9 @@ function LocalSeoPageTemplate({ page }: { page: LocalSeoPage }) {
         <section className="border-y border-white/10 bg-ink-3">
           <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
             <SectionHeading
-              eyebrow="Quote-safe content"
-              title="Exact recommendations depend on the vehicle and final client-confirmed package details."
-              summary="This page targets local search intent while avoiding unconfirmed claims about warranty, install time, package tiers, or coverage."
+              eyebrow="Vehicle-specific guidance"
+              title="The right recommendation depends on your vehicle and goals."
+              summary="Call or send a booking request so the studio can confirm fitment, timing, warranty, and the best service path."
             />
           </div>
         </section>
@@ -430,8 +436,8 @@ function ServicesPricingBlock() {
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Service menu"
-          title="Browse source-confirmed services and quote-based gaps."
-          summary="The service content keeps exact published prices where the current site has them and avoids inventing missing operational details."
+          title="Choose the right service for your vehicle."
+          summary="Compare detailing, exterior wash, tint, ceramic coating, PPF, and accessory options with clear starting points."
         />
         <div className="mt-12">
           <ServiceAccordion services={services} />
@@ -441,8 +447,8 @@ function ServicesPricingBlock() {
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Interior detailing"
-            title="Interior package matrix"
-            summary="Express, Premium, and Ultimate are the source-confirmed interior packages and should be the pricing anchor."
+            title="Interior detailing packages"
+            summary="Express, Premium, and Ultimate make it easy to choose the right cabin clean based on vehicle condition and time."
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {detailingPackages.map((item) => (
@@ -453,21 +459,6 @@ function ServicesPricingBlock() {
         </div>
       </section>
       <LocalSeoLinksBlock />
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Client confirmation"
-          title="Details to confirm before launch"
-          summary="These are not blockers for the build, but they should be answered before final SEO copy claims exact times, warranties, or package structures."
-        />
-        <div className="mt-10 grid gap-4 lg:grid-cols-2">
-          {clientQuestions.map((question) => (
-            <article key={question} className="flex gap-4 rounded-sm border border-white/10 bg-white/[0.035] p-5">
-              <HelpCircle className="h-5 w-5 shrink-0 text-orange-400" aria-hidden="true" />
-              <p className="text-sm leading-7 text-zinc-300">{question}</p>
-            </article>
-          ))}
-        </div>
-      </section>
     </>
   );
 }
@@ -477,8 +468,8 @@ function LocalSeoLinksBlock({ currentSlug }: { currentSlug?: string }) {
     <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <SectionHeading
         eyebrow="Local service pages"
-        title="Find the right service page for Kitchener, Waterloo, or Cambridge."
-        summary="These indexable landing pages support high-intent local searches while keeping the main navigation focused."
+        title="Serving Kitchener, Waterloo, and Cambridge drivers."
+        summary="Choose your city to see nearby service options."
       />
       <div className="mt-10 grid gap-5 lg:grid-cols-3">
         {localSeoCities.map((city) => (
@@ -525,15 +516,15 @@ function DashcamPage() {
       />
       <PageHero
         eyebrow="Dashcam & installation"
-        title="Supplier-backed dashcam, lighting, and install bundle pricing."
+        title="Dashcam, lighting, and install bundle pricing."
         summary={seo?.description ?? "Dashcam options for Kitchener-Waterloo-Cambridge drivers."}
         image="/images/yodha-x35-dashcam.jpg"
       />
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Supplier source"
+          eyebrow="Retail catalog"
           title="Retail prices from the Yodha catalog."
-          summary="These are supplier-visible retail references, sale prices, and product images from the Yodha catalog. Final availability, tax, fitment, install time, and warranty should still be confirmed during booking."
+          summary="Compare visible retail prices, sale pricing, and product images from the Yodha catalog. Final availability, tax, fitment, install time, and warranty are confirmed during booking."
         />
         <div className="mt-10 grid gap-5 lg:grid-cols-2">
           {accessoryPackages.map((item) => (
@@ -548,7 +539,7 @@ function DashcamPage() {
         <SupplierProductGrid
           products={installationBundles}
           title="Installation bundles"
-          summary="Supplier-listed bundle pricing for installed YODHA dashcam options and subwoofer installation. Azdome M350 is listed in the summary pricing as text-only because the source grid does not expose a product image."
+          summary="Bundle pricing for installed YODHA dashcam options and subwoofer installation. Azdome M350 is shown as text-only pricing because no product image is available."
         />
         <SupplierProductGrid
           products={lighting}
@@ -567,7 +558,7 @@ function WorkBlock() {
       <SectionHeading
         eyebrow="Gallery"
         title="Local vehicle work, presented with premium restraint."
-        summary="These images are migrated from the current site and used as visual proof for detailing, tinting, protection, and accessory services."
+        summary="These images show completed vehicle work across detailing, tinting, protection, and accessory services."
       />
       <div className="mt-10">
         <GalleryGrid />
@@ -576,13 +567,74 @@ function WorkBlock() {
   );
 }
 
+function PpfPackagesBlock() {
+  return (
+    <>
+      <section className="border-y border-white/10 bg-ink-3">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="PPF coverage packages"
+            title="Choose the protection level around the panels that matter most."
+            summary="Compare clear film coverage levels, then confirm final film brand, warranty, fitment, tax, and installation timing during booking."
+          />
+          <div className="mt-10 grid gap-5 lg:grid-cols-4">
+            {ppfPackages.map((item, index) => (
+              <PackageCard key={item.id} item={item} featured={index === 2} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-7xl gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
+        <Reveal>
+          <div className="sticky top-28">
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-orange-300">Optional coverage</p>
+            <h2 className="mt-4 font-display text-4xl leading-tight text-white">Small impact zones deserve their own plan.</h2>
+            <p className="mt-5 text-sm leading-7 text-zinc-400">
+              Add-on areas should be quoted by vehicle pattern and condition so customers only pay for protection that fits
+              their actual use.
+            </p>
+            <ButtonLink href="/contact-us" className="mt-7">
+              Request PPF Quote
+            </ButtonLink>
+          </div>
+        </Reveal>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {ppfAddOns.map((item) => (
+            <Reveal key={item.name}>
+              <article className="h-full rounded-sm border border-white/10 bg-ink-4 p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="text-xl font-semibold text-white">{item.name}</h3>
+                  <span className="rounded-sm border border-orange-400/20 bg-orange-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-orange-200">
+                    {item.price}
+                  </span>
+                </div>
+                <p className="mt-4 text-sm leading-7 text-zinc-400">{item.description}</p>
+              </article>
+            </Reveal>
+          ))}
+          <Reveal>
+            <article className="h-full rounded-sm border border-orange-400/25 bg-orange-500/10 p-6">
+              <h3 className="text-xl font-semibold text-white">Film & Warranty Confirmation</h3>
+              <p className="mt-4 text-sm leading-7 text-orange-50/80">
+                The studio will confirm the exact film line, available warranty terms, and whether self-healing film is
+                available for your vehicle before booking.
+              </p>
+            </article>
+          </Reveal>
+        </div>
+      </section>
+    </>
+  );
+}
+
 function MembershipBlock() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <SectionHeading
         eyebrow="Membership tiers"
-        title="Source-listed plans for repeat car care."
-        summary="Billing cadence still needs client confirmation, so these are presented as source-listed tier prices rather than monthly guarantees."
+        title="Plans for repeat car care."
+        summary="Choose a membership tier, then confirm the billing cadence and service rhythm with the studio."
       />
       <div className="mt-10 grid gap-5 lg:grid-cols-3">
         {memberships.map((tier) => (
@@ -614,7 +666,7 @@ function AboutProofBlock() {
       <SectionHeading
         eyebrow="Reviews"
         title="What clients say"
-        summary="The current site’s Google review feed points to the services that should lead the new brand story: tinting, detailing, affordability, and friendly service."
+        summary="Customer feedback points to the services that lead the brand story: tinting, detailing, affordability, and friendly service."
       />
       <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {testimonials.slice(0, 6).map((testimonial) => (

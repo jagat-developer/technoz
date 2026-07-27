@@ -1,5 +1,6 @@
 import type {
   BusinessProfile,
+  BookingExtraWorkGroup,
   ContentPage,
   GalleryItem,
   LocalSeoCity,
@@ -190,7 +191,204 @@ export const exteriorWashAddOns: ServiceAddOn[] = [
     name: "Iron Decontamination",
     price: "Contact for quote",
     description:
-      "Client note pairs iron decontamination with clay bar treatment. Final price and exact steps should be confirmed before launch.",
+      "Pair iron decontamination with clay bar treatment when the paint needs deeper surface cleaning. Final price and steps are confirmed after inspection.",
+  },
+];
+
+const ppfPackageNote =
+  "*PPF prices are starting points before tax and may change by vehicle size, panel complexity, film availability, and final fitment. Film brand, warranty, and exact installation time are confirmed before booking.";
+
+export const ppfPackages: ServicePackage[] = [
+  {
+    id: "ppf-basic",
+    name: "Basic PPF Package",
+    eyebrow: "Entry coverage",
+    summary: "Focused protection for the leading hood and fender area most exposed to road debris.",
+    idealFor: "Drivers who want a lower-entry clear film option for the front paint impact zone.",
+    note: ppfPackageNote,
+    prices: [{ vehicle: "Starting price", price: "$400" }],
+    interior: [
+      "24-inch coverage up the hood",
+      "24-inch coverage up the front fenders",
+      "Clear urethane film protection",
+      "Final pattern, edge wrap, warranty, and film brand to confirm",
+    ],
+    expectations: [
+      { label: "Coverage", value: 28, caption: "Hood and fender leading edge" },
+      { label: "Paint prep", value: 42, caption: "Vehicle condition reviewed first" },
+      { label: "Quote certainty", value: 68, caption: "Starting quote range" },
+    ],
+    cta: "Ask About Basic PPF",
+    image: "/images/paint-protection-film-install.webp",
+  },
+  {
+    id: "ppf-partial-front",
+    name: "Partial Front Package",
+    eyebrow: "Front impact coverage",
+    summary: "A stronger front-end package for daily drivers that need bumper, mirror, hood, and fender impact protection.",
+    idealFor: "Highway commuters and owners who want front-end protection without wrapping the full hood and fenders.",
+    note: ppfPackageNote,
+    prices: [{ vehicle: "Starting price", price: "$1,050" }],
+    interior: [
+      "24-inch hood and front fender coverage",
+      "Full wrap front bumper",
+      "Side mirror coverage",
+      "One-step paint correction review before film",
+      "Flexible film layer; final product line confirmed during booking",
+    ],
+    expectations: [
+      { label: "Coverage", value: 58, caption: "Front bumper plus partial hood and fenders" },
+      { label: "Paint prep", value: 64, caption: "One-step correction review" },
+      { label: "Daily protection", value: 76, caption: "Road debris and front-end impact zones" },
+    ],
+    cta: "Ask About Partial Front",
+    image: "/images/paint-protection-film-install.webp",
+  },
+  {
+    id: "ppf-full-front",
+    name: "Full Front Package",
+    eyebrow: "Full front protection",
+    summary: "Expanded front-end PPF coverage for owners who want the hood, fenders, bumper, and mirrors protected.",
+    idealFor: "Newer vehicles, premium paint, and drivers who want fewer visible film transition lines on front panels.",
+    note: ppfPackageNote,
+    prices: [{ vehicle: "Starting price", price: "$1,750" }],
+    interior: [
+      "Full wrap hood and front fenders",
+      "Full wrap front bumper",
+      "Side mirror coverage",
+      "One-step paint correction review before film",
+      "Flexible film layer; final product line confirmed during booking",
+    ],
+    expectations: [
+      { label: "Coverage", value: 76, caption: "Full front panel focus" },
+      { label: "Paint prep", value: 68, caption: "One-step correction review" },
+      { label: "Visual finish", value: 78, caption: "Reduced front-panel transition lines" },
+    ],
+    cta: "Ask About Full Front",
+    image: "/images/paint-protection-film-install.webp",
+  },
+  {
+    id: "ppf-full-wrap",
+    name: "Full Wrap Package",
+    eyebrow: "Maximum paint coverage",
+    summary: "A full-body PPF package for exposed painted surfaces and high-value paint preservation.",
+    idealFor: "Owners who want the most complete paint protection film path for premium, new, or enthusiast vehicles.",
+    note: ppfPackageNote,
+    prices: [{ vehicle: "Starting price", price: "$4,550" }],
+    interior: [
+      "Every exposed painted surface",
+      "Two-step paint correction review before film",
+      "Correction timing depends on the vehicle condition",
+      "Flexible film layer; final product line confirmed during booking",
+    ],
+    expectations: [
+      { label: "Coverage", value: 96, caption: "Every exposed painted surface" },
+      { label: "Paint prep", value: 90, caption: "Two-step correction review" },
+      { label: "Protection depth", value: 94, caption: "Maximum PPF coverage path" },
+    ],
+    cta: "Ask About Full Wrap",
+    image: "/images/paint-protection-film-install.webp",
+  },
+];
+
+export const ppfAddOns: ServiceAddOn[] = [
+  {
+    name: "Lighting Film Areas",
+    price: "Quote",
+    description: "Optional PPF coverage can be quoted for headlights and rear lights when the vehicle pattern allows.",
+  },
+  {
+    name: "Door Edge & Cup Protection",
+    price: "Quote",
+    description: "Door edges and door cups can be quoted for daily-use scratch protection around handles and entry points.",
+  },
+  {
+    name: "Rear Bumper Strip",
+    price: "Quote",
+    description: "Rear bumper luggage-area protection can be quoted for vehicles that need cargo loading protection.",
+  },
+];
+
+export const bookingExtraWorkGroups: BookingExtraWorkGroup[] = [
+  {
+    title: "Detailing condition",
+    options: [
+      {
+        label: "Pet hair / heavy soiling",
+        value: "Pet hair / heavy soiling",
+        description: "Flag extra cleanup time for carpets, seats, or cargo areas.",
+      },
+      {
+        label: "Stain or spill treatment",
+        value: "Stain or spill treatment",
+        description: "Request focused attention for visible stains or spills.",
+      },
+      {
+        label: "Odor / germ treatment",
+        value: "Odor / germ treatment",
+        description: "Add odor attention or deeper sanitizing discussion.",
+      },
+      {
+        label: "Steam disinfection",
+        value: "Steam disinfection",
+        description: "Add steam disinfection to the requested service path.",
+      },
+    ],
+  },
+  {
+    title: "Exterior and protection",
+    options: [
+      ...exteriorWashAddOns.map((item) => ({
+        label: `${item.name} (${item.price})`,
+        value: `${item.name} (${item.price})`,
+        description: item.description,
+      })),
+      {
+        label: "Ceramic coating quote",
+        value: "Ceramic coating quote",
+        description: "Ask for interior or exterior coating recommendations.",
+      },
+      {
+        label: "Window tint quote",
+        value: "Window tint quote",
+        description: "Ask about tint shade, legal fitment, and coverage options.",
+      },
+      ...ppfAddOns.map((item) => ({
+        label: `${item.name} (${item.price})`,
+        value: `${item.name} (${item.price})`,
+        description: item.description,
+      })),
+    ],
+  },
+  {
+    title: "Accessory add-ons",
+    options: [
+      {
+        label: "Dashcam hardwire",
+        value: "Dashcam hardwire",
+        description: "Add clean wiring or parking-mode install discussion.",
+      },
+      {
+        label: "CarPlay / Android Auto",
+        value: "CarPlay / Android Auto",
+        description: "Ask for screen, compatibility, and install options.",
+      },
+      {
+        label: "Remote starter",
+        value: "Remote starter",
+        description: "Request vehicle-specific remote starter pricing.",
+      },
+      {
+        label: "Audio / subwoofer",
+        value: "Audio / subwoofer",
+        description: "Add audio upgrade or subwoofer installation interest.",
+      },
+      {
+        label: "Ambient / starlight / underglow lighting",
+        value: "Ambient / starlight / underglow lighting",
+        description: "Ask about cabin, headliner, or exterior lighting installs.",
+      },
+    ],
   },
 ];
 
@@ -220,7 +418,7 @@ export const accessoryPackages: ServicePackage[] = [
     id: "supplier-installation-bundles",
     name: "Installation Bundles",
     eyebrow: "Installed accessories",
-    summary: "Supplier-listed installation bundle retail prices for dashcams and audio upgrades, with photo cards shown where source images are available.",
+    summary: "Supplier-listed installation bundle retail prices for dashcams and audio upgrades, with photo cards shown where images are available.",
     idealFor: "Drivers who want the product and installation path priced together before booking.",
     prices: [
       { vehicle: "YODHA X35 Installation", price: "C$189.99" },
@@ -231,7 +429,7 @@ export const accessoryPackages: ServicePackage[] = [
     ],
     interior: [
       "Supplier installation bundle pricing",
-      "Azdome M350 listed as text pricing because no source image is exposed",
+      "Azdome M350 listed as text pricing because no product image is available",
       "Clean routing and fitment planning",
       "Warranty and exact install time to confirm",
     ],
@@ -522,7 +720,7 @@ export const services: ServiceCategory[] = [
       "SUV/pickup exterior hand wash for $59",
       "Minivan exterior hand wash for $69",
       "Clay bar treatment available for +$40",
-      "Iron decontamination details to confirm before launch",
+      "Iron decontamination quoted after inspection",
     ],
     process: [
       "Confirm vehicle type and exterior condition",
@@ -579,27 +777,32 @@ export const services: ServiceCategory[] = [
     title: "Paint Protection Film",
     shortTitle: "PPF",
     summary:
-      "Paint protection film is listed in the client brief and should be positioned as a quote-based protection service until exact package data is confirmed.",
+      "Clear paint protection film coverage packages for front-end impact zones, exposed painted surfaces, and high-value paint preservation.",
+    startingAt: "$400",
     image: "/images/paint-protection-film-install.webp",
     benefits: [
-      "Protects high-impact panels from road debris and everyday wear",
-      "Best for new vehicles, premium paint, daily highway driving, and front-end protection",
-      "Quote-based pending confirmed coverage, warranty, and timing",
+      "Basic PPF package starts at $400",
+      "Partial Front package starts at $1,050",
+      "Full Front package starts at $1,750",
+      "Full Wrap package starts at $4,550",
+      "Final film brand, warranty, pattern, and fitment confirmed during booking",
     ],
     process: [
-      "Client confirms desired coverage area",
-      "Vehicle surface is cleaned and prepared",
-      "Film is fitted, installed, and inspected",
-      "Aftercare and warranty details are confirmed at handoff",
+      "Select the right coverage area for the vehicle and driving habits",
+      "Inspect paint condition and confirm correction needs before film",
+      "Prepare the surface and apply clear paint protection film",
+      "Inspect edges, wrapped areas, and aftercare details before handoff",
     ],
-    quoteRequired: true,
+    packages: ppfPackages,
+    ctaHref: "/paint-protection-film",
+    ctaLabel: "View PPF Packages",
   },
   {
     id: "accessories",
     title: "Audio, Video & Accessories",
     shortTitle: "Accessories",
     summary:
-      "Supplier-backed retail references for dashcams, hardwire accessories, installation bundles, ambient lighting, starlight kits, underglow, and audio upgrades.",
+      "Supplier catalog pricing for dashcams, hardwire accessories, installation bundles, ambient lighting, starlight kits, underglow, and audio upgrades.",
     startingAt: "C$29.99",
     image: "/images/yodha-x35-dashcam.jpg",
     benefits: [
@@ -660,7 +863,7 @@ export const localSeoServices: LocalSeoService[] = [
       "Interior vacuuming, shampooing, glass cleaning, and panel care",
       "Exterior hand wash pricing for sedan, SUV/pickup, and minivan",
       "Clay bar treatment add-on for +$40",
-      "Source reviews mention vehicles returning clean enough to feel new",
+      "Customer feedback mentions vehicles returning clean enough to feel new",
     ],
   },
   {
@@ -680,7 +883,7 @@ export const localSeoServices: LocalSeoService[] = [
       "SUV/pickup exterior hand wash for $59",
       "Minivan exterior hand wash for $69",
       "Clay bar treatment add-on for +$40",
-      "Iron decontamination details should be confirmed before launch",
+      "Iron decontamination quoted after inspection",
     ],
   },
   {
@@ -699,7 +902,7 @@ export const localSeoServices: LocalSeoService[] = [
       "Front side tinting from $149",
       "Headlight and taillight tinting from $199",
       "Full coverage tinting from $399, excluding windshield",
-      "Source reviews highlight professional tint work and reasonable pricing",
+      "Customer feedback highlights professional tint work and reasonable pricing",
     ],
   },
   {
@@ -718,7 +921,7 @@ export const localSeoServices: LocalSeoService[] = [
       "Interior ceramic coating from $149",
       "Exterior ceramic coating from $299",
       "Built around gloss, UV protection, and easier cleaning",
-      "Paint correction details and warranty should be confirmed before launch",
+      "Paint correction and warranty confirmed during booking",
     ],
   },
   {
@@ -726,17 +929,20 @@ export const localSeoServices: LocalSeoService[] = [
     slug: "paint-protection-film",
     label: "Paint Protection Film",
     keyword: "paint protection film",
-    headline: "Clear protection for high-impact paint areas and premium daily-driven vehicles.",
+    headline: "Clear film coverage packages for high-impact paint areas and premium daily-driven vehicles.",
     summary:
-      "PPF is included in the client brief and should remain quote-based until coverage levels, timing, warranty, and package pricing are confirmed.",
-    sourceFact: "PPF is source-confirmed as a service category, with exact package details pending client confirmation.",
+      "PPF package options include Basic, Partial Front, Full Front, and Full Wrap coverage paths with starting prices.",
+    sourceFact:
+      "PPF package pricing starts at $400 for Basic, $1,050 for Partial Front, $1,750 for Full Front, and $4,550 for Full Wrap. Tax, film brand, warranty, fitment, and final availability are confirmed during booking.",
     conversionAngle: "Best for new vehicles, highway commuters, and owners protecting higher-value paint.",
+    startingAt: "$400",
     image: "/images/paint-protection-film-install.webp",
     proofPoints: [
-      "Quote-based pending confirmed coverage levels",
-      "Focused on high-impact panels and road-debris protection",
-      "Useful for new vehicles and premium paint preservation",
-      "Final package names, timing, and warranty should be confirmed before launch",
+      "Basic PPF package from $400 for 24-inch hood and fender coverage",
+      "Partial Front package from $1,050 with bumper, mirrors, and partial hood/fender coverage",
+      "Full Front package from $1,750 with full hood, fenders, bumper, and mirrors",
+      "Full Wrap package from $4,550 for exposed painted surfaces",
+      "Optional headlights, rear lights, door edges, door cups, and rear bumper strip can be quoted",
     ],
   },
   {
@@ -746,7 +952,7 @@ export const localSeoServices: LocalSeoService[] = [
     keyword: "dashcam installation",
     headline: "Discreet dashcam, hardwire accessory, 4K camera, GPS, ADAS, and installation bundle options.",
     summary:
-      "Dashcam content uses supplier retail references from Yodha, including product-only prices and installation bundle pricing where listed.",
+      "Dashcam options use Yodha catalog pricing, including product-only prices and installation bundle pricing where listed.",
     sourceFact:
       "Yodha lists REDTIGER hardwire accessories at C$29.99, YODHA X35 at C$139.99, YODHA M8 at C$189.99, X35 installation at C$189.99, and Azdome M350 Installation SPECIAL at C$440.00.",
     conversionAngle: "Best for drivers who want security, incident recording, and cleaner cable routing.",
@@ -775,7 +981,7 @@ export const localSeoServices: LocalSeoService[] = [
       "Subwoofer installation bundle listed at C$500.00",
       "Vehicle compatibility should be checked before quoting",
       "Clean installation and testing are positioned as part of the process",
-      "Additional audio/video package timing and warranty should be confirmed before launch",
+      "Additional audio/video package timing and warranty confirmed during booking",
     ],
   },
   {
@@ -786,14 +992,14 @@ export const localSeoServices: LocalSeoService[] = [
     headline: "Apple CarPlay and Android Auto screen options for a more modern cabin.",
     summary:
       "CarPlay remains part of the accessory offer, but the supplier catalog currently gives stronger confirmed pricing for dashcams, lighting, and audio bundles.",
-    sourceFact: "Supplier-backed CarPlay pricing still needs confirmation before publishing an exact public offer.",
+    sourceFact: "CarPlay recommendations are quoted after confirming the vehicle, screen option, install path, and warranty.",
     conversionAngle: "Best for drivers who want maps, calls, media, and camera support in one cleaner cabin setup.",
     image: "/images/yodha-x35-dashcam.jpg",
     proofPoints: [
       "CarPlay remains a client-listed service category",
       "Pairs naturally with dashcam and accessory installation requests",
       "Vehicle compatibility should be confirmed before booking",
-      "Exact CarPlay model, price, install timing, and warranty should be confirmed before launch",
+      "Exact CarPlay model, price, install timing, and warranty confirmed during booking",
     ],
   },
   {
@@ -803,15 +1009,15 @@ export const localSeoServices: LocalSeoService[] = [
     keyword: "remote starter installation",
     headline: "Remote starter service for all-season comfort and everyday convenience.",
     summary:
-      "Remote starter installation is source-confirmed as an accessory service, with exact pricing, vehicle fitment, warranty, and install timing to confirm.",
-    sourceFact: "Remote starter installation is source-confirmed in the service list.",
+      "Remote starter installation is available as an accessory service, with exact pricing, vehicle fitment, warranty, and install timing confirmed during booking.",
+    sourceFact: "Remote starter installation is available as a vehicle-specific accessory service.",
     conversionAngle: "Best for owners who want their vehicle ready before hot summers and cold Ontario mornings.",
     image: "/images/premium-auto-care-bay.webp",
     proofPoints: [
       "Remote starter service category confirmed",
       "Vehicle compatibility should be checked before quoting",
       "Useful for Ontario winter and summer comfort",
-      "Exact package pricing, timing, and warranty should be confirmed before launch",
+      "Exact package pricing, timing, and warranty confirmed during booking",
     ],
   },
 ];
@@ -936,14 +1142,14 @@ export const gallery: GalleryItem[] = [
 ];
 
 export const clientQuestions = [
-  "PPF inclusions, coverage levels, pricing, install time, warranty, and preferred imagery.",
+  "PPF film brand, installer authorization, warranty, final package names, and whether XPEL ULTIMATE PLUS, HALO Flexible Film, and self-healing claims can be published.",
   "Tint film brands or grades, package durations, warranty, and whether prices vary by vehicle type.",
   "Ceramic coating duration, coating lifespan, paint correction inclusion, warranty, and vehicle-size pricing.",
   "Iron decontamination price, exact included steps, and whether it always requires clay bar treatment.",
-  "Supplier product inventory and sale prices should be rechecked before launch if the Yodha catalog changes.",
-  "Azdome M350 Installation SPECIAL is listed at C$440.00 on Yodha and is shown as text-only pricing until a source image is available.",
-  "Dashcam, lighting, audio, and CarPlay install time, warranty, and vehicle compatibility still need client confirmation.",
-  "Remote starter and CarPlay package pricing still need supplier-backed confirmation.",
+  "Supplier product inventory and sale prices if the Yodha catalog changes.",
+  "Azdome M350 Installation SPECIAL is listed at C$440.00 on Yodha and is shown as text-only pricing until a product image is available.",
+  "Dashcam, lighting, audio, and CarPlay install time, warranty, and vehicle compatibility.",
+  "Remote starter and CarPlay package pricing.",
   "Whether membership pricing is monthly, per visit, or package-based.",
 ];
 
@@ -1015,6 +1221,21 @@ const corePageSeo: SeoPage[] = [
     priority: 0.75,
   },
   {
+    slug: "paint-protection-film",
+    path: "/paint-protection-film",
+    title: "Paint Protection Film Packages | Techno Car Studio Kitchener",
+    description:
+      "Compare Techno Car Studio PPF coverage packages from $400, including Basic, Partial Front, Full Front, Full Wrap, and optional film coverage areas.",
+    keywords: [
+      "paint protection film Kitchener",
+      "PPF Kitchener",
+      "clear bra Kitchener",
+      "paint protection film Waterloo",
+    ],
+    image: "/images/paint-protection-film-install.webp",
+    priority: 0.82,
+  },
+  {
     slug: "about-us",
     path: "/about-us",
     title: "About Techno Car Studio | Premium Car Care in Kitchener",
@@ -1039,7 +1260,7 @@ const corePageSeo: SeoPage[] = [
     path: "/membership",
     title: "Membership Plans | Techno Car Studio",
     description:
-      "Explore Techno Car Studio membership benefits, priority scheduling, exclusive discounts, VIP treatment, and source-listed tiers.",
+      "Explore Techno Car Studio membership benefits, priority scheduling, exclusive discounts, VIP treatment, and repeat car-care tiers.",
     keywords: ["car care membership Kitchener", "detailing membership KWC"],
     image: "/images/garage-hero-detailing.webp",
     priority: 0.65,
@@ -1069,7 +1290,7 @@ export const contentPages: ContentPage[] = [
       "Techno Car Studio combines advanced techniques, careful workmanship, and automotive passion to keep KWC vehicles looking sharp, protected, and enjoyable to drive.",
     heroImage: "/images/premium-auto-care-bay.webp",
     body: [
-      "The source site positions Techno Car Studio as a premier car detailing studio that goes beyond ordinary cleaning. The new site keeps that truth, but sharpens it into a more premium brand story for car owners in Kitchener, Waterloo, Cambridge, and nearby communities.",
+      "Techno Car Studio is positioned as a premium Kitchener automotive studio for drivers who want careful workmanship, clear service options, and a sharper vehicle finish.",
       "From detailing and tinting to ceramic coating, PPF, dashcam, remote starter, audio accessories, and CarPlay installations, the studio is built around high-quality work, attentive service, and practical upgrades that make every drive feel better.",
     ],
     sections: [
@@ -1080,7 +1301,7 @@ export const contentPages: ContentPage[] = [
       },
       {
         title: "Why drivers choose the studio",
-        body: "Source reviews consistently mention professional tinting, reasonable pricing, friendly service, and vehicles returning with a like-new clean.",
+        body: "Customer feedback consistently mentions professional tinting, reasonable pricing, friendly service, and vehicles returning with a like-new clean.",
         points: ["Showroom-ready detailing", "Fast and friendly tint service", "KWC-area customer trust", "Clear package options"],
       },
     ],
@@ -1091,17 +1312,17 @@ export const contentPages: ContentPage[] = [
     eyebrow: "Our Work",
     title: "Finished vehicles, cleaner cabins, sharper glass, better protection.",
     summary:
-      "A curated gallery of Techno Car Studio source-site work, reframed for a dark, premium, image-led portfolio experience.",
+      "A curated gallery of Techno Car Studio work, reframed for a dark, premium, image-led portfolio experience.",
     heroImage: "/images/gallery-work-17.webp",
     body: [
-      "The source website includes a broad gallery of completed vehicle work. The new gallery uses those images as proof points across detailing, tint, protection, and accessory-focused services.",
-      "Each image is migrated locally, given descriptive alt text, and placed in a responsive layout that feels more like a premium studio portfolio than a basic image dump.",
+      "The gallery brings completed vehicle work into one place so drivers can quickly see detailing, tint, protection, and accessory-focused results.",
+      "Each image is organized with descriptive alt text and placed in a responsive layout that feels like a premium studio portfolio.",
     ],
     sections: [
       {
         title: "Gallery use",
         body: "The gallery should build trust before a driver ever opens the booking form.",
-        points: ["Real source-site imagery", "Service tags", "Fast responsive image loading", "SEO-friendly alt text"],
+        points: ["Real vehicle imagery", "Service tags", "Fast responsive image loading", "Descriptive alt text"],
       },
     ],
     seo: seoBySlug.get("our-work")!,
@@ -1111,18 +1332,18 @@ export const contentPages: ContentPage[] = [
     eyebrow: "Servicing & Pricing",
     title: "Clear packages for daily drivers, enthusiasts, and protected vehicles.",
     summary:
-      "Compare interior detailing, exterior hand wash, tinting, ceramic coating, PPF, dashcam, remote starter, audio, and CarPlay services with source-confirmed package details where available.",
+      "Compare interior detailing, exterior hand wash, tinting, ceramic coating, PPF, dashcam, remote starter, audio, and CarPlay services with clear package details where available.",
     heroImage: "/images/exterior-g-wagon-wash.jpg",
     body: [
-      "The current website and client notes list service categories, starting prices, package inclusions, and exact estimated times for Express, Premium, and Ultimate interior detailing. Basic is mapped to Express, Advanced is mapped to Premium, and Diamond is mapped to Ultimate with exterior detailing excluded from those three interior packages.",
-      "The client has also provided exterior hand wash pricing and a clay bar add-on price. Exterior wash remains a separate service path, and incomplete service data stays quote-based instead of inventing facts.",
-      "Supplier accessory pricing now comes from Yodha retail listings for dashcams, hardwire accessories, installation bundles, lighting kits, starlight kits, underglow, and subwoofer installation. Final installed quotes should still confirm vehicle fitment, availability, tax, warranty, and install time.",
-      "This page is the main conversion hub for KWC car owners comparing what service fits their vehicle and schedule.",
+      "Compare service categories, starting prices, package inclusions, and estimated times for Express, Premium, and Ultimate interior detailing. Exterior detailing is kept separate from those three interior packages.",
+      "Exterior hand wash pricing and clay bar treatment are organized as their own service path so drivers can choose outside-only cleaning when that is all they need.",
+      "Accessory pricing uses Yodha retail listings for dashcams, hardwire accessories, installation bundles, lighting kits, starlight kits, underglow, and subwoofer installation. Final installed quotes confirm vehicle fitment, availability, tax, warranty, and install time.",
+      "This page helps KWC car owners compare what service fits their vehicle and schedule.",
     ],
     sections: [
       {
-        title: "Source-confirmed pricing",
-        body: "Interior detailing packages, exterior hand wash pricing, tint, ceramic, and supplier accessory prices are published from source material. Exact missing timing or warranty details stay flagged for client confirmation.",
+        title: "Clear pricing paths",
+        body: "Interior detailing packages, exterior hand wash pricing, tint, ceramic, PPF, and supplier accessory prices are organized so customers can compare the right starting point.",
         points: [
           "Express interior detailing starts at $49 and is estimated at 1 to 1.5 hours.",
           "Premium interior detailing starts at $139 and is estimated at 1.5 to 2 hours.",
@@ -1131,20 +1352,63 @@ export const contentPages: ContentPage[] = [
           "Exterior detailing is excluded from Express, Premium, and Ultimate interior package inclusions.",
           "Express exterior hand wash is $49 for sedans, $59 for SUV/pickup, and $69 for minivans.",
           "Clay bar treatment is available as a +$40 exterior add-on.",
+          "PPF packages start at $400 for Basic, $1,050 for Partial Front, $1,750 for Full Front, and $4,550 for Full Wrap.",
           "REDTIGER hardwire accessories start at C$29.99 from Yodha retail pricing.",
           "YODHA X35 product-only pricing is C$139.99 and X35 installation bundle pricing is C$189.99.",
-          "Azdome M350 Installation SPECIAL is listed at C$440.00 and shown as text-only pricing because no source image is exposed.",
+          "Azdome M350 Installation SPECIAL is listed at C$440.00 and shown as text-only pricing because no product image is available.",
           "YODHA ambient lighting kits start at C$99.99 and underglow starts at C$54.99 from Yodha sale pricing.",
-          "Tinting, ceramic coating, accessory install timing, and warranty details still need final confirmation.",
+          "Tinting, ceramic coating, accessory install timing, and warranty details are confirmed during booking.",
         ],
       },
       {
-        title: "Client details to confirm",
-        body: "Before launch, confirm PPF, tint, coating, accessory, dashcam, and membership terms so the site can move more quote-based services into exact packages.",
-        points: clientQuestions,
+        title: "Vehicle-specific quotes",
+        body: "Some services depend on vehicle size, condition, product fitment, warranty preference, and package availability.",
+        points: [
+          "PPF film line, warranty, pattern, and final fitment are confirmed before booking.",
+          "Tint film, shade, legal fitment, and warranty are confirmed before installation.",
+          "Ceramic coating recommendations depend on paint condition and desired protection.",
+          "Dashcam, lighting, audio, CarPlay, and remote starter installs are confirmed by vehicle compatibility.",
+          "Membership cadence is confirmed directly with the studio.",
+        ],
       },
     ],
     seo: seoBySlug.get("servicing-pricing")!,
+  },
+  {
+    slug: "paint-protection-film",
+    eyebrow: "Paint Protection Film",
+    title: "Clear film coverage for the panels that take the hit first.",
+    summary:
+      "Compare PPF coverage paths for front-end impact zones, full front protection, full-body paint preservation, and optional high-wear areas.",
+    heroImage: "/images/paint-protection-film-install.webp",
+    body: [
+      "Paint protection film is a transparent urethane film designed to protect automotive paint from road debris, stone chips, scratches, scuffs, and everyday high-impact wear.",
+      "Four clear coverage levels make it easier to choose the right protection path: Basic, Partial Front, Full Front, and Full Wrap.",
+      "Each PPF quote is confirmed by vehicle pattern, paint condition, tax, film availability, warranty, and final fitment before booking.",
+    ],
+    sections: [
+      {
+        title: "Why PPF matters",
+        body: "PPF is built for the painted surfaces most likely to collect chips, pitting, scratches, and scuffs from daily driving.",
+        points: [
+          "Transparent film protection for paint preservation",
+          "Useful for new vehicles, highway commuters, and premium paint",
+          "Self-healing film availability can be confirmed with the studio",
+          "Coverage can scale from leading-edge panels to every exposed painted surface",
+        ],
+      },
+      {
+        title: "Booking notes",
+        body: "Starting prices help customers compare coverage levels, while final details are confirmed around the exact vehicle.",
+        points: [
+          "Starting prices are before tax and subject to change",
+          "Vehicle size, panel complexity, and pattern availability can affect final quote",
+          "Paint correction needs should be inspected before film installation",
+          "Warranty, film brand, and exact installation time are confirmed during booking",
+        ],
+      },
+    ],
+    seo: seoBySlug.get("paint-protection-film")!,
   },
   {
     slug: "membership",
@@ -1154,8 +1418,8 @@ export const contentPages: ContentPage[] = [
       "Membership plans help repeat customers keep their vehicles fresh while unlocking scheduling priority, discounts, and VIP treatment.",
     heroImage: "/images/garage-hero-detailing.webp",
     body: [
-      "The source membership page promises priority scheduling, exclusive discounts, VIP treatment, and three membership tiers. The new page keeps those benefits and clearly flags that billing cadence should be confirmed before launch.",
-      "Membership content should invite repeat car care without overpromising exact monthly or per-visit terms until the client confirms them.",
+      "Membership plans are built for drivers who want priority scheduling, exclusive discounts, VIP treatment, and a simpler repeat car-care rhythm.",
+      "The studio can confirm whether the selected membership works best as a monthly, per-visit, or package-based plan.",
     ],
     sections: [
       {

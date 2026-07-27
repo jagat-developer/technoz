@@ -72,7 +72,7 @@ export default function HomePage() {
       <section className="border-y border-white/10 bg-ink-3">
         <div className="mx-auto grid max-w-7xl gap-0 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
           {[
-            { label: "Years of source-site experience", value: "20+", icon: Award },
+            { label: "Years of car-care experience", value: "20+", icon: Award },
             { label: "Core automotive service lanes", value: "5", icon: Wrench },
             { label: "Local KWC service focus", value: "KWC", icon: MapPin },
           ].map((stat) => (
@@ -90,7 +90,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Services"
             title="One studio for the way your vehicle looks, feels, and drives."
-            summary="Every service is presented source-first. Exact detailing package times and prices are published; incomplete service data remains quote-based until the client confirms it."
+            summary="Compare clear starting points for detailing, exterior wash, tint, ceramic coating, PPF, dashcam, remote starter, audio, and CarPlay service."
           />
         </Reveal>
         <Reveal className="mt-12" delay={0.1}>
@@ -103,7 +103,7 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Interior detailing"
-              title="Interior detailing packages with source-confirmed timing."
+              title="Interior detailing packages with clear timing."
               summary="Express, Premium, and Ultimate packages are now presented as interior package paths with vehicle pricing and estimated service windows."
             />
           </Reveal>
@@ -125,12 +125,12 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="Why choose us"
               title="Craftsmanship, clear options, and work drivers actually recommend."
-              summary="The source reviews highlight professional tinting, reasonable prices, fast friendly service, and cars returning clean enough to feel new."
+              summary="Customer feedback highlights professional tinting, reasonable prices, fast friendly service, and cars returning clean enough to feel new."
             />
           </Reveal>
           <div className="grid gap-4 sm:grid-cols-2">
             {[
-              { title: "Source-led pricing", body: "Published details stay tied to the current site, with quote-based copy where facts are missing.", icon: ShieldCheck },
+              { title: "Clear pricing paths", body: "Published starting points stay visible, with custom quotes where fitment or package details depend on the vehicle.", icon: ShieldCheck },
               { title: "Fast service paths", body: "Interior Express starts at 1 to 1.5 hours, with exterior hand wash available separately.", icon: Clock },
               { title: "Premium finish", body: "Dark studio design, real images, and sharper service content elevate the brand image.", icon: Sparkles },
               { title: "Local trust", body: "Reviews call out tint quality, detailing results, affordability, and KWC-area recommendation.", icon: Star },
@@ -153,7 +153,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="Loved by drivers"
               title="Google review language, refined into proof points."
-              summary="Testimonials are sourced from the current site’s review feed and lightly tightened for presentation."
+              summary="Customer feedback highlights tinting, detailing, affordability, and friendly service."
             />
           </Reveal>
           <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
@@ -177,8 +177,8 @@ export default function HomePage() {
         <Reveal>
           <SectionHeading
             eyebrow="Studio work"
-            title="A sharper gallery for real source-site vehicle work."
-            summary="Migrated gallery assets are local, optimized through Next image, and tagged for service relevance."
+            title="A sharper gallery for real vehicle work."
+            summary="Vehicle images are organized with service tags and fast responsive loading."
           />
         </Reveal>
         <Reveal className="mt-12">

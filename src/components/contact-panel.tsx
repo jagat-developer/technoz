@@ -15,8 +15,8 @@ export function ContactPanel() {
             Ready to give your car the studio treatment?
           </h2>
           <p className="mt-5 max-w-xl text-base leading-8 text-zinc-400">
-            Send vehicle details and preferred timing. If email delivery is not configured yet, the form opens a
-            prefilled message to the studio so no lead gets trapped.
+            Send vehicle details, the main package, any extra work you want quoted, and preferred timing. If email
+            delivery is not configured yet, the form opens a prefilled message to the studio so no lead gets trapped.
           </p>
           <div className="mt-8 grid gap-3 text-sm text-zinc-300">
             <a href={`tel:${business.phone}`} className="flex gap-3 transition hover:text-orange-300">

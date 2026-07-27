@@ -9,6 +9,8 @@ export const leadSchema = z.object({
   vehicle: z.string().min(2).max(160),
   serviceInterest: z.string().min(2).max(120),
   packageInterest: z.string().max(120),
+  additionalWork: z.array(z.string().min(2).max(140)).max(24).default([]),
+  additionalDetails: z.string().max(800).default(""),
   preferredDate: z.string().max(80),
   message: z.string().max(1200),
   website: z.string().optional(),
@@ -16,6 +18,8 @@ export const leadSchema = z.object({
 
 export function buildLeadEmail(payload: LeadFormSubmission) {
   const subject = `New Techno Car Studio booking request from ${payload.name}`;
+  const additionalWork =
+    payload.additionalWork.length > 0 ? `- ${payload.additionalWork.join("\n- ")}` : "None selected";
   const body = [
     "New Techno Car Studio booking request",
     "",
@@ -26,6 +30,13 @@ export function buildLeadEmail(payload: LeadFormSubmission) {
     `Vehicle: ${payload.vehicle}`,
     `Service interest: ${payload.serviceInterest}`,
     `Package interest: ${payload.packageInterest || "Not specified"}`,
+    "",
+    "Additional work requested:",
+    additionalWork,
+    "",
+    "Additional work details:",
+    payload.additionalDetails || "No add-on details provided.",
+    "",
     `Preferred date/time: ${payload.preferredDate || "Not specified"}`,
     "",
     "Message:",
