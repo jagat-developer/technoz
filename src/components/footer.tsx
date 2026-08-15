@@ -20,7 +20,7 @@ export function Footer() {
             </span>
             <span>
               <span className="block text-base font-bold uppercase text-white">Techno Car Studio</span>
-              <span className="block text-xs uppercase tracking-[0.2em] text-orange-300">Kitchener</span>
+              <span className="block text-xs uppercase tracking-[0.2em] text-orange-300">{business.city}</span>
             </span>
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-7 text-zinc-400">{business.description}</p>

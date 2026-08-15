@@ -269,7 +269,7 @@ function LocalSeoPageTemplate({ page }: { page: LocalSeoPage }) {
         <Reveal className="grid gap-6 text-lg leading-9 text-zinc-300">
           <p>
             Techno Car Studio serves {page.city.serviceArea} with {page.service.keyword} and premium automotive care
-            from its Kitchener studio.
+            from its {business.city} studio.
           </p>
           <p>{page.service.conversionAngle}</p>
           <p>{page.service.sourceFact}</p>

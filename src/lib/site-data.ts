@@ -18,17 +18,17 @@ export const business: BusinessProfile = {
   name: "Techno Car Studio",
   legalName: "Techno Car Studio Ltd.",
   email: "TECHNOCARSTUDIO@gmail.com",
-  phone: "+16472361875",
-  phoneDisplay: "(647) 236-1875",
-  address: "250 Mill St",
-  city: "Kitchener",
+  phone: "+15483338897",
+  phoneDisplay: "(548) 333-8897",
+  address: "412 Queen Street",
+  city: "Cambridge",
   region: "ON",
-  postalCode: "N2M 3R5",
+  postalCode: "N3C 1H1",
   country: "CA",
   instagram: "techno_car_studio",
   instagramUrl: "https://www.instagram.com/techno_car_studio/",
   mapsUrl:
-    "https://www.google.com/maps/search/?api=1&query=250%20Mill%20St%2C%20Kitchener%2C%20ON%20N2M%203R5%2C%20Canada",
+    "https://www.google.com/maps/search/?api=1&query=412%20Queen%20Street%2C%20Cambridge%2C%20ON%20N3C%201H1%2C%20Canada",
   baseUrl: "https://technocarstudio.ca",
   description:
     "Automotive detailing, window tint, ceramic coating, paint protection film, dashcam, remote starter, audio accessories, and CarPlay installation in Kitchener-Waterloo-Cambridge.",
@@ -1157,7 +1157,7 @@ const corePageSeo: SeoPage[] = [
   {
     slug: "home",
     path: "/",
-    title: "Techno Car Studio | Car Detailing, Tint & Ceramic Coating in Kitchener",
+    title: "Techno Car Studio | Car Detailing, Tint & Ceramic Coating in Cambridge",
     description:
       "Premium interior detailing, exterior hand wash, window tint, ceramic coating, PPF, dashcam, remote starter, audio, and CarPlay installation in Kitchener-Waterloo-Cambridge.",
     keywords: [
@@ -1173,7 +1173,7 @@ const corePageSeo: SeoPage[] = [
   {
     slug: "servicing-pricing",
     path: "/servicing-pricing",
-    title: "Servicing & Pricing | Techno Car Studio Kitchener",
+    title: "Servicing & Pricing | Techno Car Studio Cambridge",
     description:
       "Compare Techno Car Studio interior detailing packages, exterior hand wash pricing, tinting, ceramic coating, dashcam, remote starter, audio, and CarPlay services.",
     keywords: ["car detailing Kitchener pricing", "exterior car wash Kitchener", "window tint Waterloo", "ceramic coating Cambridge"],
@@ -1213,7 +1213,7 @@ const corePageSeo: SeoPage[] = [
   {
     slug: "dashcam",
     path: "/dashcam",
-    title: "Dashcam Installation | Techno Car Studio Kitchener",
+    title: "Dashcam Installation | Techno Car Studio Cambridge",
     description:
       "Supplier-backed dashcam, hardwire, installation bundle, ambient lighting, starlight, underglow, and audio retail pricing for KWC drivers.",
     keywords: ["dashcam installation Kitchener", "YODHA dashcam Kitchener", "ambient lighting installation Waterloo"],
@@ -1223,7 +1223,7 @@ const corePageSeo: SeoPage[] = [
   {
     slug: "paint-protection-film",
     path: "/paint-protection-film",
-    title: "Paint Protection Film Packages | Techno Car Studio Kitchener",
+    title: "Paint Protection Film Packages | Techno Car Studio Cambridge",
     description:
       "Compare Techno Car Studio PPF coverage packages from $400, including Basic, Partial Front, Full Front, Full Wrap, and optional film coverage areas.",
     keywords: [
@@ -1238,9 +1238,9 @@ const corePageSeo: SeoPage[] = [
   {
     slug: "about-us",
     path: "/about-us",
-    title: "About Techno Car Studio | Premium Car Care in Kitchener",
+    title: "About Techno Car Studio | Premium Car Care in Cambridge",
     description:
-      "Meet Techno Car Studio, a Kitchener automotive studio focused on detailing, tinting, ceramic coating, accessories, and precision service.",
+      "Meet Techno Car Studio, a Cambridge automotive studio focused on detailing, tinting, ceramic coating, accessories, and precision service.",
     keywords: ["Techno Car Studio Kitchener", "auto detailing studio KWC"],
     image: "/images/premium-auto-care-bay.webp",
     priority: 0.7,
@@ -1268,7 +1268,7 @@ const corePageSeo: SeoPage[] = [
   {
     slug: "contact-us",
     path: "/contact-us",
-    title: "Contact & Booking | Techno Car Studio Kitchener",
+    title: "Contact & Booking | Techno Car Studio Cambridge",
     description:
       "Book automotive detailing, tint, ceramic coating, PPF, dashcam, remote starter, audio, or CarPlay service at Techno Car Studio.",
     keywords: ["book car detailing Kitchener", "Techno Car Studio phone"],
@@ -1290,7 +1290,7 @@ export const contentPages: ContentPage[] = [
       "Techno Car Studio combines advanced techniques, careful workmanship, and automotive passion to keep KWC vehicles looking sharp, protected, and enjoyable to drive.",
     heroImage: "/images/premium-auto-care-bay.webp",
     body: [
-      "Techno Car Studio is positioned as a premium Kitchener automotive studio for drivers who want careful workmanship, clear service options, and a sharper vehicle finish.",
+      "Techno Car Studio is positioned as a premium Cambridge automotive studio for drivers who want careful workmanship, clear service options, and a sharper vehicle finish.",
       "From detailing and tinting to ceramic coating, PPF, dashcam, remote starter, audio accessories, and CarPlay installations, the studio is built around high-quality work, attentive service, and practical upgrades that make every drive feel better.",
     ],
     sections: [
@@ -1443,7 +1443,7 @@ export const contentPages: ContentPage[] = [
     sections: [
       {
         title: "Studio location",
-        body: "Techno Car Studio is located at 250 Mill St, Kitchener, ON N2M 3R5, Canada.",
+        body: "Techno Car Studio is located at 412 Queen Street, Cambridge, ON N3C 1H1, Canada.",
         points: [business.phoneDisplay, business.email, `Instagram: ${business.instagram}`],
       },
     ],

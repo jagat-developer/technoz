@@ -28,7 +28,7 @@ export function buildMetadata(page: SeoPage): Metadata {
           url: image,
           width: 1200,
           height: 630,
-          alt: `${business.name} automotive service in Kitchener`,
+          alt: `${business.name} automotive service in ${business.city}`,
         },
       ],
     },

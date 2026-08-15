@@ -40,7 +40,7 @@ export default function HomePage() {
         <div className="relative mx-auto flex min-h-[calc(88svh-6rem)] max-w-7xl items-center px-4 py-14 sm:px-6 lg:px-8">
           <Reveal className="w-full min-w-0 max-w-3xl">
             <p className="mb-5 inline-flex max-w-full border-l border-orange-500 pl-3 text-[0.68rem] font-semibold uppercase leading-5 tracking-[0.18em] text-orange-300 sm:text-xs sm:tracking-[0.24em]">
-              Premium automotive care in Kitchener
+              Premium automotive care in Cambridge
             </p>
             <h1 className="fluid-hero max-w-[11ch] font-display font-normal text-white [text-shadow:0_14px_50px_rgba(0,0,0,0.72)] sm:max-w-none">
               Your car deserves expert care.
