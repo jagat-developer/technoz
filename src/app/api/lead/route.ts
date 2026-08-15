@@ -71,7 +71,7 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: process.env.LEADS_FROM_EMAIL || "Techno Car Studio <onboarding@resend.dev>",
+        from: process.env.LEADS_FROM_EMAIL || "Techno Car Studio <leads@technocarstudio.ca>",
         to: [process.env.LEADS_TO_EMAIL || business.email],
         reply_to: payload.email,
         subject,

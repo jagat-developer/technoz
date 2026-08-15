@@ -5,6 +5,9 @@ import { fileURLToPath } from "node:url";
 const appDir = dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
+  images: {
+    unoptimized: true,
+  },
   skipTrailingSlashRedirect: true,
   turbopack: {
     root: appDir,
