@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Award, Clock, MapPin, ShieldCheck, Sparkles, Star, Wrench } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { ContactPanel } from "@/components/contact-panel";
+import { HomePricingPopup } from "@/components/home-pricing-popup";
 import { ExteriorWashSection } from "@/components/exterior-wash-section";
 import { GalleryGrid } from "@/components/gallery-grid";
 import { PackageCard } from "@/components/package-card";
@@ -21,6 +22,7 @@ export const metadata: Metadata = seo ? buildMetadata(seo) : {};
 export default function HomePage() {
   return (
     <>
+      <HomePricingPopup />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd([localBusinessSchema(), serviceSchema(), breadcrumbSchema([{ name: "Home", path: "/" }])]) }}
@@ -46,8 +48,8 @@ export default function HomePage() {
               Your car deserves expert care.
             </h1>
             <p className="mt-6 max-w-[22rem] text-base leading-8 text-zinc-300 sm:max-w-xl sm:text-lg">
-              Interior detailing, exterior hand wash, tint, ceramic coating, PPF, dashcam, remote starter, audio, and
-              CarPlay installation for KWC drivers.
+              Two automotive ventures in one Cambridge studio: wheels, tires, and maintenance, plus tint, detailing,
+              protection, and custom upgrades.
             </p>
             <ul className="mt-7 flex max-w-xl flex-col items-start gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-200 sm:flex-row sm:flex-wrap">
               {["Interior detail from $49", "Exterior wash from $49", "Tint from $149"].map((item) => (
@@ -66,6 +68,26 @@ export default function HomePage() {
               </ButtonLink>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-ink-3 px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading eyebrow="Choose your venture" title="What does your vehicle need today?" summary="Select the dedicated service path so wheels and tires never get confused with tint and custom work." />
+          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+            <article className="rounded-sm border border-orange-400/30 bg-orange-500/[0.06] p-7 sm:p-9">
+              <p className="eyebrow text-orange-300">New venture</p>
+              <h2 className="mt-4 font-display text-4xl text-white sm:text-5xl">Techno Wheels and Tires</h2>
+              <p className="mt-4 max-w-xl leading-8 text-zinc-400">Custom rims, new and used tires, oil changes, rustproofing, and brake changes.</p>
+              <ButtonLink href="/wheels-and-tires" className="mt-7">View Wheels and Tires</ButtonLink>
+            </article>
+            <article className="rounded-sm border border-white/10 bg-white/[0.035] p-7 sm:p-9">
+              <p className="eyebrow text-orange-300">Existing venture</p>
+              <h2 className="mt-4 font-display text-4xl text-white sm:text-5xl">Tint and Customs</h2>
+              <p className="mt-4 max-w-xl leading-8 text-zinc-400">Detailing, window tint, ceramic coating, PPF, dashcams, audio, and custom accessories.</p>
+              <ButtonLink href="/tint-and-customs" variant="secondary" className="mt-7">View Tint and Customs</ButtonLink>
+            </article>
+          </div>
         </div>
       </section>
 

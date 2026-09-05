@@ -2,6 +2,7 @@ import { z } from "zod";
 import type { LeadFormSubmission } from "@/lib/types";
 
 export const leadSchema = z.object({
+  venture: z.enum(["Techno Wheels and Tires", "Tint and Customs"]),
   name: z.string().min(2).max(120),
   phone: z.string().min(7).max(40),
   email: z.string().email().max(160),
@@ -17,15 +18,16 @@ export const leadSchema = z.object({
 });
 
 export function buildLeadEmail(payload: LeadFormSubmission) {
-  const subject = `New Techno Car Studio booking request from ${payload.name}`;
+  const subject = `New ${payload.venture} enquiry from ${payload.name}`;
   const additionalWork =
     payload.additionalWork.length > 0 ? `- ${payload.additionalWork.join("\n- ")}` : "None selected";
   const body = [
-    "New Techno Car Studio booking request",
+    `New ${payload.venture} enquiry`,
     "",
     `Name: ${payload.name}`,
     `Phone: ${payload.phone}`,
     `Email: ${payload.email}`,
+    `Venture: ${payload.venture}`,
     `Vehicle type: ${payload.vehicleType}`,
     `Vehicle: ${payload.vehicle}`,
     `Service interest: ${payload.serviceInterest}`,

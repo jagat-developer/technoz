@@ -6,6 +6,7 @@ import { bookingExtraWorkGroups, services } from "@/lib/site-data";
 import type { LeadFormSubmission } from "@/lib/types";
 
 const initialForm: LeadFormSubmission = {
+  venture: "Tint and Customs",
   name: "",
   phone: "",
   email: "",
@@ -20,8 +21,12 @@ const initialForm: LeadFormSubmission = {
   website: "",
 };
 
-export function BookingForm() {
-  const [form, setForm] = useState<LeadFormSubmission>(initialForm);
+export function BookingForm({ defaultVenture = "Tint and Customs" }: { defaultVenture?: LeadFormSubmission["venture"] }) {
+  const [form, setForm] = useState<LeadFormSubmission>(() => ({
+    ...initialForm,
+    venture: defaultVenture,
+    serviceInterest: defaultVenture === "Techno Wheels and Tires" ? "Custom Rims" : "Detailing",
+  }));
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [mailtoFallback, setMailtoFallback] = useState<string | null>(null);
@@ -29,6 +34,14 @@ export function BookingForm() {
   const selectedService = useMemo(
     () => services.find((service) => service.shortTitle === form.serviceInterest),
     [form.serviceInterest],
+  );
+
+  const ventureServices = useMemo(
+    () =>
+      form.venture === "Techno Wheels and Tires"
+        ? ["Custom Rims", "New / Used Tires", "Oil Change", "Rustproofing", "Brake Change"]
+        : services.map((service) => service.shortTitle),
+    [form.venture],
   );
 
   const packages = useMemo(() => {
@@ -59,6 +72,11 @@ export function BookingForm() {
       serviceInterest,
       packageInterest: validPackages.includes(current.packageInterest) ? current.packageInterest : "Not sure yet",
     }));
+  }
+
+  function updateVenture(venture: LeadFormSubmission["venture"]) {
+    const serviceInterest = venture === "Techno Wheels and Tires" ? "Custom Rims" : "Detailing";
+    setForm((current) => ({ ...current, venture, serviceInterest, packageInterest: "Not sure yet", additionalWork: [] }));
   }
 
   function toggleAdditionalWork(value: string) {
@@ -97,7 +115,11 @@ export function BookingForm() {
       if (result.mailto) {
         setMailtoFallback(result.mailto);
       } else {
-        setForm(initialForm);
+        setForm({
+          ...initialForm,
+          venture: defaultVenture,
+          serviceInterest: defaultVenture === "Techno Wheels and Tires" ? "Custom Rims" : "Detailing",
+        });
       }
     } catch (error) {
       setStatus("error");
@@ -132,6 +154,12 @@ export function BookingForm() {
       <Field label="Email">
         <input required type="email" value={form.email} onChange={(event) => update("email", event.target.value)} />
       </Field>
+      <Field label="Business venture">
+        <select value={form.venture} onChange={(event) => updateVenture(event.target.value as LeadFormSubmission["venture"])}>
+          <option>Techno Wheels and Tires</option>
+          <option>Tint and Customs</option>
+        </select>
+      </Field>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Vehicle type">
           <select value={form.vehicleType} onChange={(event) => update("vehicleType", event.target.value)}>
@@ -147,8 +175,8 @@ export function BookingForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Service interest">
           <select value={form.serviceInterest} onChange={(event) => updateServiceInterest(event.target.value)}>
-            {services.map((service) => (
-              <option key={service.id}>{service.shortTitle}</option>
+            {ventureServices.map((service) => (
+              <option key={service}>{service}</option>
             ))}
           </select>
         </Field>
@@ -160,7 +188,7 @@ export function BookingForm() {
           </select>
         </Field>
       </div>
-      <fieldset className="grid gap-3 rounded-sm border border-white/10 bg-white/[0.025] p-4">
+      {form.venture === "Tint and Customs" ? <fieldset className="grid gap-3 rounded-sm border border-white/10 bg-white/[0.025] p-4">
         <legend className="px-1 text-sm font-semibold text-zinc-200">Additional work</legend>
         <p className="text-xs leading-6 text-zinc-500">Select extras or condition items to quote with this booking.</p>
         <div className="grid gap-4">
@@ -193,7 +221,7 @@ export function BookingForm() {
             </div>
           ))}
         </div>
-      </fieldset>
+      </fieldset> : null}
       <Field label="Extra work details">
         <textarea
           rows={3}

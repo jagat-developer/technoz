@@ -21,9 +21,32 @@ export function localBusinessSchema() {
       postalCode: business.postalCode,
       addressCountry: business.country,
     },
-    areaServed: ["Kitchener", "Waterloo", "Cambridge", "Kitchener-Waterloo-Cambridge"],
+    areaServed: ["Cambridge", "Kitchener", "Waterloo", "Kitchener-Waterloo-Cambridge"],
     sameAs: [business.instagramUrl],
+    hasMap: business.mapsUrl,
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: business.phone,
+      contactType: "customer service",
+      areaServed: "CA",
+      availableLanguage: "English",
+    },
     priceRange: "$$",
+  };
+}
+
+export function faqPageSchema(items: Array<{ question: string; answer: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
   };
 }
 

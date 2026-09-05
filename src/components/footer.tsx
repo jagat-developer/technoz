@@ -44,7 +44,7 @@ export function Footer() {
           <ul className="mt-5 grid gap-3 text-sm text-zinc-400">
             {services.slice(0, 5).map((service) => (
               <li key={service.id}>
-                <Link className="transition hover:text-orange-300" href="/servicing-pricing">
+                <Link className="transition hover:text-orange-300" href="/tint-and-customs">
                   {service.shortTitle}
                 </Link>
               </li>

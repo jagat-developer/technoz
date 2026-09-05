@@ -1,8 +1,9 @@
 import { Camera, Mail, MapPin, Phone } from "lucide-react";
 import { business } from "@/lib/site-data";
 import { BookingForm } from "@/components/booking-form";
+import type { LeadFormSubmission } from "@/lib/types";
 
-export function ContactPanel() {
+export function ContactPanel({ defaultVenture = "Tint and Customs" }: { defaultVenture?: LeadFormSubmission["venture"] }) {
   return (
     <section className="relative overflow-hidden border-y border-white/10 bg-ink-3">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(234,88,12,0.14),transparent_32%)]" />
@@ -15,8 +16,8 @@ export function ContactPanel() {
             Ready to give your car the studio treatment?
           </h2>
           <p className="mt-5 max-w-xl text-base leading-8 text-zinc-400">
-            Send vehicle details, the main package, any extra work you want quoted, and preferred timing. If email
-            delivery is not configured yet, the form opens a prefilled message to the studio so no lead gets trapped.
+            Choose Techno Wheels and Tires or Tint and Customs, then send your vehicle, service, and preferred timing.
+            Until dedicated venture mailboxes are tested, enquiries continue through the existing studio contact.
           </p>
           <div className="mt-8 grid gap-3 text-sm text-zinc-300">
             <a href={`tel:${business.phone}`} className="flex gap-3 transition hover:text-orange-300">
@@ -43,7 +44,7 @@ export function ContactPanel() {
           </div>
         </div>
         <div className="rounded-sm border border-white/10 bg-black/45 p-5 shadow-2xl shadow-black/40 sm:p-7">
-          <BookingForm />
+          <BookingForm defaultVenture={defaultVenture} />
         </div>
       </div>
     </section>

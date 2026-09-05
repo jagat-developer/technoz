@@ -51,6 +51,7 @@ export async function POST(request: Request) {
     return Response.json({ ok: true, message: "Thank you. We will be in touch." });
   }
 
+  // Both ventures retain the tested studio inbox until their dedicated mailboxes are confirmed active.
   const mailto = buildMailto(payload, business.email);
   const resendApiKey = process.env.RESEND_API_KEY;
 

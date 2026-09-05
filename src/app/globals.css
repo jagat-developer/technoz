@@ -108,6 +108,85 @@ img {
   white-space: nowrap;
 }
 
+.blog-content {
+  color: #d4d4d8;
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+
+.blog-content > * + * {
+  margin-top: 1.35rem;
+}
+
+.blog-content h2,
+.blog-content h3,
+.blog-content h4 {
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
+  color: white;
+  font-family: var(--font-cormorant), serif;
+  line-height: 1.12;
+}
+
+.blog-content h2 {
+  margin-top: 3.75rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.blog-content h3 {
+  margin-top: 2.5rem;
+  font-size: clamp(1.55rem, 4vw, 2.15rem);
+}
+
+.blog-content h4 {
+  margin-top: 2rem;
+  font-size: 1.45rem;
+}
+
+.blog-content ul,
+.blog-content ol {
+  padding-left: 1.5rem;
+}
+
+.blog-content ul { list-style: disc; }
+.blog-content ol { list-style: decimal; }
+.blog-content li + li { margin-top: 0.55rem; }
+.blog-content strong { color: #fafafa; }
+.blog-content a { color: #fdba74; text-decoration: underline; text-underline-offset: 3px; }
+.blog-content a:hover { color: #fb923c; }
+
+.blog-content blockquote {
+  border-left: 2px solid #f97316;
+  background: rgba(249, 115, 22, 0.07);
+  padding: 1rem 1.25rem;
+  color: #e4e4e7;
+}
+
+.blog-content img {
+  margin: 2.5rem auto;
+  width: 100%;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.blog-content pre,
+.blog-content table {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.blog-content pre {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #11100e;
+  padding: 1rem;
+}
+
+.blog-content th,
+.blog-content td {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.75rem;
+  text-align: left;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

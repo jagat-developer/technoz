@@ -31,17 +31,53 @@ export const business: BusinessProfile = {
     "https://www.google.com/maps/search/?api=1&query=412%20Queen%20Street%2C%20Cambridge%2C%20ON%20N3C%201H1%2C%20Canada",
   baseUrl: "https://technocarstudio.ca",
   description:
-    "Automotive detailing, window tint, ceramic coating, paint protection film, dashcam, remote starter, audio accessories, and CarPlay installation in Kitchener-Waterloo-Cambridge.",
+    "Cambridge automotive studio with Techno Wheels and Tires for wheels, tires, and maintenance, plus Tint and Customs for detailing, tint, protection, and vehicle upgrades.",
 };
 
 export const navItems = [
   { label: "Home", href: "/" },
+  { label: "Wheels & Tires", href: "/wheels-and-tires" },
+  { label: "Tint & Customs", href: "/tint-and-customs" },
   { label: "About", href: "/about-us" },
   { label: "Work", href: "/our-work" },
-  { label: "Services", href: "/servicing-pricing" },
-  { label: "Membership", href: "/membership" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact-us" },
 ];
+
+export const wheelAndTireBrands: string[] = [];
+
+export const wheelAndTireServices = [
+  {
+    id: "custom-rims",
+    title: "Custom Rims",
+    price: "Starting at $199",
+    description: "Custom rim options for your vehicle. All brands available.",
+  },
+  {
+    id: "new-used-tires",
+    title: "New / Used Tires",
+    price: "Starting at $39",
+    description: "New and used tire options available for different vehicles and budgets.",
+  },
+  {
+    id: "oil-change",
+    title: "Oil Change",
+    price: "$69",
+    description: "Oil change service for routine vehicle maintenance.",
+  },
+  {
+    id: "rustproofing",
+    title: "Rustproofing",
+    price: "$79",
+    description: "Rustproofing service to help protect vulnerable vehicle surfaces.",
+  },
+  {
+    id: "brake-change",
+    title: "Brake Change",
+    price: "$99",
+    description: "Brake change service with vehicle details confirmed before booking.",
+  },
+] as const;
 
 const detailingPackageNote =
   "*Prices before tax. Packages are based on average vehicle condition; excess soiling, stains, or pet hair may require an additional fee.";
@@ -189,9 +225,81 @@ export const exteriorWashAddOns: ServiceAddOn[] = [
   },
   {
     name: "Iron Decontamination",
-    price: "Contact for quote",
+    price: "Request a Quote",
     description:
       "Pair iron decontamination with clay bar treatment when the paint needs deeper surface cleaning. Final price and steps are confirmed after inspection.",
+  },
+];
+
+export const tintPackages: ServicePackage[] = [
+  {
+    id: "front-side-window-tint",
+    name: "Front Side Window Tint",
+    eyebrow: "Window tint",
+    summary: "Tint for the front side windows, with film selection and legal fitment confirmed before installation.",
+    idealFor: "Drivers looking for front side window tinting.",
+    prices: [{ vehicle: "Starting price", price: "$149" }],
+    interior: ["Front side window tint", "Film shade and legal fitment consultation"],
+    cta: "Enquire About Tint",
+    image: "/images/window-tint-install.webp",
+  },
+  {
+    id: "light-tint",
+    name: "Headlight / Taillight Tint",
+    eyebrow: "Light tint",
+    summary: "Tint application for headlights or taillights, subject to vehicle and legal fitment review.",
+    idealFor: "Drivers requesting a darker lighting appearance.",
+    prices: [{ vehicle: "Starting price", price: "$199" }],
+    interior: ["Headlight or taillight tint", "Vehicle-specific fitment confirmation"],
+    cta: "Enquire About Light Tint",
+    image: "/images/window-tint-install.webp",
+  },
+  {
+    id: "full-window-tint",
+    name: "Full Coverage Window Tint",
+    eyebrow: "Window tint",
+    summary: "Full coverage window tint package excluding the windshield.",
+    idealFor: "Drivers seeking broader window coverage without windshield tinting.",
+    prices: [{ vehicle: "Starting price", price: "$399" }],
+    interior: ["Full coverage window tint", "Windshield excluded", "Film shade and legal fitment consultation"],
+    cta: "Enquire About Full Tint",
+    image: "/images/ceramic-window-tint.webp",
+  },
+];
+
+export const ceramicCoatingPackages: ServicePackage[] = [
+  {
+    id: "fabric-ceramic-coating",
+    name: "Fabric Ceramic Coating",
+    eyebrow: "Interior protection",
+    summary: "Interior protection intended for compatible fabric surfaces. Exact product, covered surfaces, benefits, and preparation are confirmed before service.",
+    idealFor: "Drivers asking about protection for compatible fabric interior surfaces.",
+    prices: [{ vehicle: "Price", price: "Request a Quote" }],
+    interior: ["Compatible fabric surfaces", "Product and coverage confirmed before application"],
+    cta: "Request a Fabric Coating Quote",
+    image: "/images/interior-detailing-service.webp",
+  },
+  {
+    id: "leather-coating",
+    name: "Leather Coating",
+    eyebrow: "Interior protection",
+    summary: "Interior protection intended for compatible leather surfaces. Exact product, covered surfaces, benefits, and preparation are confirmed before service.",
+    idealFor: "Drivers asking about protection for compatible leather interior surfaces.",
+    prices: [{ vehicle: "Price", price: "Request a Quote" }],
+    interior: ["Compatible leather surfaces", "Product and coverage confirmed before application"],
+    cta: "Request a Leather Coating Quote",
+    image: "/images/interior-porsche-clean-cabin.jpg",
+  },
+  {
+    id: "exterior-ceramic-coating",
+    name: "Exterior Ceramic Coating",
+    eyebrow: "Exterior protection",
+    summary: "Exterior ceramic coating for paint protection, gloss, hydrophobic performance, and easier maintenance.",
+    idealFor: "Drivers seeking exterior paint protection and easier wash maintenance.",
+    prices: [{ vehicle: "Starting price", price: "$299" }],
+    interior: ["Exterior paint coating", "Surface preparation confirmed after inspection"],
+    cta: "Enquire About Exterior Coating",
+    image: "/images/premium-auto-care-bay.webp",
   },
 ];
 
@@ -750,6 +858,7 @@ export const services: ServiceCategory[] = [
       "Quality assurance inspection",
       "Aftercare instructions for tint longevity",
     ],
+    packages: tintPackages,
   },
   {
     id: "ceramic-coating",
@@ -771,6 +880,7 @@ export const services: ServiceCategory[] = [
       "Professional coating application",
       "Curing and final quality inspection",
     ],
+    packages: ceramicCoatingPackages,
   },
   {
     id: "ppf",
@@ -825,22 +935,28 @@ export const services: ServiceCategory[] = [
 
 export const localSeoCities: LocalSeoCity[] = [
   {
+    name: "Cambridge",
+    slug: "cambridge",
+    region: "ON",
+    serviceArea: "Cambridge, Galt, Hespeler, Preston, and nearby neighbourhoods",
+    localContext:
+      "Our studio is located at 412 Queen Street in Cambridge and serves drivers across Galt, Hespeler, Preston, and the surrounding Waterloo Region.",
+  },
+  {
     name: "Kitchener",
     slug: "kitchener",
     region: "ON",
     serviceArea: "Kitchener, Downtown Kitchener, Victoria Park, Forest Heights, and nearby neighbourhoods",
+    localContext:
+      "Kitchener customers are served from our Cambridge studio at 412 Queen Street. Share your vehicle and preferred service before travelling so the team can confirm timing and availability.",
   },
   {
     name: "Waterloo",
     slug: "waterloo",
     region: "ON",
     serviceArea: "Waterloo, Uptown Waterloo, University District, Beechwood, and nearby neighbourhoods",
-  },
-  {
-    name: "Cambridge",
-    slug: "cambridge",
-    region: "ON",
-    serviceArea: "Cambridge, Galt, Hespeler, Preston, and nearby neighbourhoods",
+    localContext:
+      "Waterloo customers are served from our Cambridge studio at 412 Queen Street. Booking ahead lets the team confirm the right service, vehicle fitment, and appointment window.",
   },
 ];
 
@@ -956,7 +1072,7 @@ export const localSeoServices: LocalSeoService[] = [
     sourceFact:
       "Yodha lists REDTIGER hardwire accessories at C$29.99, YODHA X35 at C$139.99, YODHA M8 at C$189.99, X35 installation at C$189.99, and Azdome M350 Installation SPECIAL at C$440.00.",
     conversionAngle: "Best for drivers who want security, incident recording, and cleaner cable routing.",
-    startingAt: "C$29.99",
+    startingAt: "C$189.99",
     image: "/images/yodha-x35-dashcam.jpg",
     proofPoints: [
       "Hardwire accessories from C$29.99",
@@ -1026,7 +1142,7 @@ export const localSeoPages: LocalSeoPage[] = localSeoServices.flatMap((service) 
   localSeoCities.map((city) => {
     const slug = `${service.slug}-${city.slug}`;
     const path = `/${slug}`;
-    const title = `${service.label} ${city.name} | Techno Car Studio`;
+    const title = `${service.label} ${city.name}, ON${service.startingAt ? ` | From ${service.startingAt}` : " | Techno Car Studio"}`;
     const priceCopy = service.startingAt ? ` starting at ${service.startingAt}` : " with quote-based recommendations";
 
     return {
@@ -1038,7 +1154,7 @@ export const localSeoPages: LocalSeoPage[] = localSeoServices.flatMap((service) 
         slug,
         path,
         title,
-        description: `${service.label} in ${city.name}${priceCopy}. Techno Car Studio serves Kitchener-Waterloo-Cambridge drivers with premium automotive care.`,
+        description: `${service.label} for ${city.name} drivers${priceCopy}, provided from Techno Car Studio at 412 Queen Street in Cambridge. Compare options and request a booking.`,
         keywords: [
           `${service.keyword} ${city.name}`,
           `${service.keyword} ${city.region}`,
@@ -1047,7 +1163,7 @@ export const localSeoPages: LocalSeoPage[] = localSeoServices.flatMap((service) 
           `${service.keyword} KWC`,
         ],
         image: service.image,
-        priority: city.slug === "kitchener" ? 0.68 : 0.62,
+        priority: city.slug === "cambridge" ? 0.82 : 0.62,
       },
     };
   }),

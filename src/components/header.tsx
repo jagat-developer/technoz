@@ -34,16 +34,16 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Primary navigation">
           {navItems.map((item) => {
-            const active = item.href === "/" ? pathname === "/" : pathname === item.href;
+            const active = item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(`${item.href}/`);
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-sm px-4 py-2 text-sm font-medium text-zinc-300 transition hover:bg-white/5 hover:text-white",
+                  "rounded-sm px-3 py-2 text-sm font-medium text-zinc-300 transition hover:bg-white/5 hover:text-white",
                   active && "bg-white/[0.08] text-orange-300",
                 )}
               >
@@ -53,7 +53,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <a
             href={`tel:${business.phone}`}
             className="inline-flex h-11 items-center gap-2 rounded-sm border border-white/10 bg-white/5 px-4 text-sm font-semibold text-white transition hover:border-orange-400/60 hover:text-orange-200"
@@ -71,7 +71,7 @@ export function Header() {
 
         <button
           type="button"
-          className="grid h-11 w-11 place-items-center rounded-sm border border-white/10 bg-white/5 text-white lg:hidden"
+          className="grid h-11 w-11 place-items-center rounded-sm border border-white/10 bg-white/5 text-white xl:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           onClick={() => setOpen((value) => !value)}
@@ -82,7 +82,7 @@ export function Header() {
       </div>
 
       {open ? (
-        <div id="mobile-menu" className="border-t border-white/10 bg-ink-2 px-4 pb-5 pt-2 lg:hidden">
+        <div id="mobile-menu" className="border-t border-white/10 bg-ink-2 px-4 pb-5 pt-2 xl:hidden">
           <nav className="mx-auto grid max-w-7xl gap-1" aria-label="Mobile navigation">
             {navItems.map((item) => (
               <Link

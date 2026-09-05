@@ -32,7 +32,14 @@ import {
   supplierProducts,
   testimonials,
 } from "@/lib/site-data";
-import { breadcrumbSchema, localSeoServiceSchema, packageSchema, serviceSchema } from "@/lib/schema";
+import {
+  breadcrumbSchema,
+  faqPageSchema,
+  localBusinessSchema,
+  localSeoServiceSchema,
+  packageSchema,
+  serviceSchema,
+} from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { jsonLd } from "@/lib/utils";
 
@@ -228,6 +235,7 @@ function LocalSeoPageTemplate({ page }: { page: LocalSeoPage }) {
     services.find((service) => service.id === page.service.id) ??
     services.find((service) => service.id === "accessories");
   const serviceLabel = `${page.service.label} in ${page.city.name}`;
+  const localFaqs = getLocalSeoFaqs(page);
 
   return (
     <>
@@ -235,7 +243,9 @@ function LocalSeoPageTemplate({ page }: { page: LocalSeoPage }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: jsonLd([
+            localBusinessSchema(),
             localSeoServiceSchema(page),
+            faqPageSchema(localFaqs),
             breadcrumbSchema([
               { name: "Home", path: "/" },
               { name: serviceLabel, path: page.path },
@@ -271,6 +281,7 @@ function LocalSeoPageTemplate({ page }: { page: LocalSeoPage }) {
             Techno Car Studio serves {page.city.serviceArea} with {page.service.keyword} and premium automotive care
             from its {business.city} studio.
           </p>
+          <p>{page.city.localContext}</p>
           <p>{page.service.conversionAngle}</p>
           <p>{page.service.sourceFact}</p>
         </Reveal>
@@ -281,7 +292,7 @@ function LocalSeoPageTemplate({ page }: { page: LocalSeoPage }) {
           {[
             { label: "Service", value: page.service.label },
             { label: "Starting point", value: page.service.startingAt ?? "Contact for quote" },
-            { label: "Service area", value: `${page.city.name}, ${page.city.region}` },
+            { label: "Studio location", value: `${business.city}, ${business.region}` },
           ].map((item) => (
             <Reveal key={item.label}>
               <article className="h-full rounded-sm border border-white/10 bg-ink-4 p-6">
@@ -296,6 +307,26 @@ function LocalSeoPageTemplate({ page }: { page: LocalSeoPage }) {
       <section className="mx-auto grid max-w-7xl gap-5 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
         <FeatureList title={`Why choose this ${page.service.keyword} service`} items={page.service.proofPoints} />
         <FeatureList title="What the process looks like" items={serviceCategory?.process ?? page.service.proofPoints} />
+      </section>
+
+      <section className="border-y border-white/10 bg-ink-3">
+        <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow={`${page.city.name} service answers`}
+            title={`Common questions about ${page.service.keyword}.`}
+            summary="Clear answers about pricing, location, and booking before you contact the studio."
+          />
+          <dl className="mt-10 grid gap-4">
+            {localFaqs.map((item) => (
+              <Reveal key={item.question}>
+                <div className="rounded-sm border border-white/10 bg-ink-4 p-6">
+                  <dt className="text-lg font-semibold text-white">{item.question}</dt>
+                  <dd className="mt-3 text-sm leading-7 text-zinc-400">{item.answer}</dd>
+                </div>
+              </Reveal>
+            ))}
+          </dl>
+        </div>
       </section>
 
       {page.service.id === "detailing" ? (
@@ -314,6 +345,21 @@ function LocalSeoPageTemplate({ page }: { page: LocalSeoPage }) {
             <ExteriorWashSection className="mt-20" />
           </div>
         </section>
+      ) : serviceCategory?.packages?.length ? (
+        <section className="border-y border-white/10 bg-ink-3">
+          <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+            <SectionHeading
+              eyebrow={`${page.service.label} options`}
+              title="Approved packages and service paths."
+              summary="Only confirmed starting prices and inclusions are shown. Vehicle-specific details are finalized before booking."
+            />
+            <div className="mt-10 grid gap-5 lg:grid-cols-3">
+              {serviceCategory.packages.map((item) => (
+                <PackageCard key={item.id} item={item} />
+              ))}
+            </div>
+          </div>
+        </section>
       ) : (
         <section className="border-y border-white/10 bg-ink-3">
           <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
@@ -330,6 +376,31 @@ function LocalSeoPageTemplate({ page }: { page: LocalSeoPage }) {
       <ContactPanel />
     </>
   );
+}
+
+function getLocalSeoFaqs(page: LocalSeoPage) {
+  const priceAnswer = page.service.startingAt
+    ? `${page.service.sourceFact} Final pricing depends on the vehicle, condition, coverage, and any selected add-ons.`
+    : `${page.service.sourceFact} The team confirms pricing after checking the vehicle, compatibility, and requested work.`;
+
+  return [
+    {
+      question: `How much does ${page.service.keyword} cost for ${page.city.name} drivers?`,
+      answer: priceAnswer,
+    },
+    {
+      question: `Where is Techno Car Studio for ${page.service.keyword}?`,
+      answer: `The studio is at ${business.address}, ${business.city}, ${business.region} ${business.postalCode}. ${page.city.localContext}`,
+    },
+    {
+      question: `How do I book ${page.service.keyword} near ${page.city.name}?`,
+      answer: `Send the booking form with your vehicle, preferred timing, and requested work, or call ${business.phoneDisplay}. The studio confirms availability and any vehicle-specific details before the appointment.`,
+    },
+    {
+      question: `What should I confirm before booking ${page.service.keyword}?`,
+      answer: `${page.service.conversionAngle} Exact timing, compatibility, warranty details, and final price are confirmed for your vehicle before service.`,
+    },
+  ];
 }
 
 function PackageDetail({ slug }: { slug: string }) {
@@ -468,8 +539,8 @@ function LocalSeoLinksBlock({ currentSlug }: { currentSlug?: string }) {
     <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <SectionHeading
         eyebrow="Local service pages"
-        title="Serving Kitchener, Waterloo, and Cambridge drivers."
-        summary="Choose your city to see nearby service options."
+        title="Based in Cambridge and serving KWC drivers."
+        summary="Start with Cambridge or choose your city to compare local service details and booking information."
       />
       <div className="mt-10 grid gap-5 lg:grid-cols-3">
         {localSeoCities.map((city) => (

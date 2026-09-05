@@ -114,6 +114,7 @@ export type GalleryItem = {
 };
 
 export type LeadFormSubmission = {
+  venture: "Techno Wheels and Tires" | "Tint and Customs";
   name: string;
   phone: string;
   email: string;
@@ -148,6 +149,7 @@ export type LocalSeoCity = {
   slug: string;
   region: string;
   serviceArea: string;
+  localContext: string;
 };
 
 export type LocalSeoService = {
